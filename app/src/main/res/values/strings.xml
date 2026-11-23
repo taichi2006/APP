@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TCFurnish</string>
+    <string name="right_address">Kiến tạo không gian sống với TCFurnish</string>
+    <string name="quality">Biến ngôi nhà mơ ước của bạn thành hiện thực với ứng dụng trực quan hóa và sắp đặt nội thất AR</string>
+    <string name="g_my_cart">Giỏ hàng của tôi</string>
+    <!-- Web Client ID từ Firebase Console -> Authentication -> Sign-in method -> Google -->
+    <string name="default_web_client_id">852460858845-fnoj1qojq4v0eako77kjfc5ggpur78h3.apps.googleusercontent.com</string>
+</resources>

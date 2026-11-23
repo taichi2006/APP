@@ -1,0 +1,59 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Outer Circular Golden Ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#55B88A44"
+        android:strokeWidth="1.2"
+        android:pathData="M24,4 A20,20 0 1,1 23.9,4 Z" />
+
+    <!-- Stylized Modern Lounge Chair Silhouette in Luxury Gold -->
+    <!-- Backrest -->
+    <path
+        android:fillColor="#E5C384"
+        android:pathData="M16,13 C16,11 18,10 24,10 C30,10 32,11 32,13 C32,18 30,22 29,24 C28,25 26,25 24,25 C22,25 20,25 19,24 C18,22 16,18 16,13 Z" />
+
+    <!-- Inner Cushion Shadow -->
+    <path
+        android:fillColor="#B88A44"
+        android:pathData="M18,14 C18,12 20,11.5 24,11.5 C28,11.5 30,12 30,14 C30,18 29,21 28,22.5 C27,23.5 26,23.5 24,23.5 C22,23.5 21,23.5 20,22.5 C19,21 18,18 18,14 Z" />
+
+    <!-- Seat Base -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M14,24 C14,23 16,22 24,22 C32,22 34,23 34,24 C34,26.5 32,28 24,28 C16,28 14,26.5 14,24 Z" />
+
+    <!-- Left Leg -->
+    <path
+        android:fillColor="#B88A44"
+        android:pathData="M17,27 L15,36 L16.5,36 L18.5,27 Z" />
+
+    <!-- Right Leg -->
+    <path
+        android:fillColor="#B88A44"
+        android:pathData="M31,27 L29.5,27 L31.5,36 L33,36 Z" />
+
+    <!-- Rear Legs -->
+    <path
+        android:fillColor="#7A562B"
+        android:pathData="M20,27 L18.5,34 L20,34 L21,27 Z" />
+    <path
+        android:fillColor="#7A562B"
+        android:pathData="M28,27 L27,27 L28,34 L29.5,34 Z" />
+
+    <!-- Monogram "TC" -->
+    <!-- T -->
+    <path
+        android:fillColor="#E5C384"
+        android:pathData="M18,39 L25,39 L25,40.5 L22.5,40.5 L22.5,45 L20.5,45 L20.5,40.5 L18,40.5 Z" />
+
+    <!-- C -->
+    <path
+        android:fillColor="#E5C384"
+        android:pathData="M31,40 C30.5,39.3 29.5,39 28,39 C26,39 25,40.2 25,42 C25,43.8 26,45 28,45 C29.5,45 30.5,44.7 31,43.8 L29.8,42.8 C29.3,43.5 28.7,43.8 28,43.8 C27,43.8 26.5,43 26.5,42 C26.5,41 27,40.2 28,40.2 C28.7,40.2 29.3,40.5 29.8,41.2 Z" />
+
+</vector>

@@ -1,0 +1,77 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer Architectural Subtle Ring Glow -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#2DB88A44"
+        android:strokeWidth="1.2"
+        android:pathData="M54,23 A31,31 0 1,1 53.9,23 Z" />
+
+    <!-- Stylized Modern Lounge Chair Crest & Silhouette (TCFurnish Emblem) -->
+    <!-- Chair Backrest & Shell Curve -->
+    <path
+        android:fillColor="#E5C384"
+        android:pathData="M39,34 C39,31 43,29 54,29 C65,29 69,31 69,34 C69,42 66,50 63,53 C61,55 58,55 54,55 C50,55 47,55 45,53 C42,50 39,42 39,34 Z" />
+
+    <!-- Inner Cushion & Backrest Depth Shadow -->
+    <path
+        android:fillColor="#B88A44"
+        android:pathData="M43,36 C43,33 46,32 54,32 C62,32 65,33 65,36 C65,42 63,48 61,50 C59,52 57,52 54,52 C51,52 49,52 47,50 C45,48 43,42 43,36 Z" />
+
+    <!-- Center Soft Cushion Contour -->
+    <path
+        android:fillColor="#F6E7D2"
+        android:pathData="M47,38 C47,35 49,34 54,34 C59,34 61,35 61,38 C61,43 59,47 57,48 C56,49 55,49 54,49 C53,49 52,49 51,48 C49,47 47,43 47,38 Z" />
+
+    <!-- Chair Seat Base -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M35,53 C35,51 38,50 54,50 C70,50 73,51 73,53 C73,57 69,60 54,60 C39,60 35,57 35,53 Z" />
+
+    <!-- Seat Cushion Highlight -->
+    <path
+        android:fillColor="#FFF4E0"
+        android:pathData="M38,53 C38,52 41,51 54,51 C67,51 70,52 70,53 C70,55 67,57 54,57 C41,57 38,55 38,53 Z" />
+
+    <!-- Solid Wood Spindle Legs (Mid-Century Modern Tapered Legs) -->
+    <!-- Left Front Leg -->
+    <path
+        android:fillColor="#B88A44"
+        android:pathData="M40,58 L36,73 L38.5,73 L42,58 Z" />
+
+    <!-- Right Front Leg -->
+    <path
+        android:fillColor="#B88A44"
+        android:pathData="M68,58 L66,58 L69.5,73 L72,73 Z" />
+
+    <!-- Left Back Leg -->
+    <path
+        android:fillColor="#7A562B"
+        android:pathData="M45,58 L42,70 L44,70 L46.5,58 Z" />
+
+    <!-- Right Back Leg -->
+    <path
+        android:fillColor="#7A562B"
+        android:pathData="M63,58 L61.5,58 L64,70 L66,70 Z" />
+
+    <!-- Architectural Base Ground Shadow -->
+    <path
+        android:fillColor="#26000000"
+        android:pathData="M34,74 C34,73 40,72 54,72 C68,72 74,73 74,74 C74,75 68,76 54,76 C40,76 34,75 34,74 Z" />
+
+    <!-- Monogram Brand Bar "TC" -->
+    <!-- T bar -->
+    <path
+        android:fillColor="#E5C384"
+        android:pathData="M43,78 L53,78 L53,80 L49,80 L49,87 L47,87 L47,80 L43,80 Z" />
+
+    <!-- C curve -->
+    <path
+        android:fillColor="#E5C384"
+        android:pathData="M63,80 C62,78.5 60.5,78 58.5,78 C55.5,78 54,80 54,82.5 C54,85 55.5,87 58.5,87 C60.5,87 62,86.5 63,85 L61.5,83.8 C60.8,84.7 59.8,85.2 58.5,85.2 C56.8,85.2 56,84 56,82.5 C56,81 56.8,79.8 58.5,79.8 C59.8,79.8 60.8,80.3 61.5,81.2 Z" />
+
+</vector>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "852460858845",
+    "project_id": "ar-room-92861",
+    "storage_bucket": "ar-room-92861.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852460858845:android:450aa6b9f825098f261a34",
+        "android_client_info": {
+          "package_name": "com.example.aroom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzMOEkhTZ3BGbJ8ROWzWmxsrzoCVT33j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="@color/brand_surface"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/img_cart_product"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/brand_bg_warm"
+            android:padding="4dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_cart"/>
+
+        <TextView
+            android:id="@+id/tv_product_cart_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="Buffet sofa"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/brand_text_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/layoutQuantity"
+            app:layout_constraintStart_toEndOf="@id/img_cart_product"
+            app:layout_constraintTop_toTopOf="@id/img_cart_product" />
+        
+        <TextView
+            android:id="@+id/tv_product_cart_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="1.560.000 đ"
+            android:textColor="@color/brand_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/layoutQuantity"
+            app:layout_constraintStart_toStartOf="@id/tv_product_cart_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_cart_name"/>
+
+        <LinearLayout
+            android:id="@+id/layoutOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/tv_product_cart_price"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_cart_price">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_cart_prod_color"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@color/brand_primary"
+                app:civ_border_color="@color/brand_border"
+                app:civ_border_width="1dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_cart_prod_size"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@color/brand_secondary"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/tv_cart_prod_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginStart="-13dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Nút Thanh Toán Nhanh Cho Sản Phẩm Này -->
+        <TextView
+            android:id="@+id/btn_checkout_single_item"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/settings_items_background"
+            android:backgroundTint="#FAF3E8"
+            android:fontFamily="@font/sf_pro_display"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="Thanh toán món này ›"
+            android:textColor="@color/brand_primary"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_product_cart_price"
+            app:layout_constraintTop_toBottomOf="@id/layoutOptions" />
+
+        <LinearLayout
+            android:id="@+id/layoutQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_plus"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_plus"
+                app:tint="@color/brand_primary" />
+
+            <TextView
+                android:id="@+id/tv_cart_prod_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="1"
+                android:textColor="@color/brand_text_dark"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" />
+
+            <ImageView
+                android:id="@+id/img_minus"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_minus"
+                app:tint="@color/brand_text_muted" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
