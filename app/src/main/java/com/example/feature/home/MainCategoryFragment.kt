@@ -220,13 +220,14 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
                     ).apply {
                         setMargins(0, 0, marginEndPx, 0)
                     }
-                    background = androidx.core.content.ContextCompat.getDrawable(context, R.drawable.settings_items_background)
+                    background = androidx.core.content.ContextCompat.getDrawable(context, R.drawable.bg_rounded_badge)
                     backgroundTintList = android.content.res.ColorStateList.valueOf(
                         androidx.core.content.ContextCompat.getColor(context, R.color.brand_surface)
                     )
                     gravity = android.view.Gravity.CENTER
                     setPadding(paddingStartEndPx, 0, paddingStartEndPx, 0)
                     text = query
+                    typeface = androidx.core.content.res.ResourcesCompat.getFont(context, R.font.sf_pro_display)
                     setTextColor(androidx.core.content.ContextCompat.getColor(context, R.color.brand_text_dark))
                     textSize = 12f
                     isClickable = true

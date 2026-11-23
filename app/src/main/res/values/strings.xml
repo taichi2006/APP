@@ -3,6 +3,37 @@
     <string name="right_address">Kiến tạo không gian sống với TCFurnish</string>
     <string name="quality">Biến ngôi nhà mơ ước của bạn thành hiện thực với ứng dụng trực quan hóa và sắp đặt nội thất AR</string>
     <string name="g_my_cart">Giỏ hàng của tôi</string>
+    <string name="color_label">Màu:</string>
+    <string name="quantity_format">x%d</string>
+    <string name="delete_dialog_title">Xóa sản phẩm khỏi giỏ</string>
+    <string name="delete_dialog_message">Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng không?</string>
+    <string name="dialog_cancel">HỦY</string>
+    <string name="dialog_delete">XÓA</string>
+    <string name="voucher_dialog_title">Kho Voucher Ưu Đãi</string>
+    <string name="voucher_code_10">TCFURNISH10</string>
+    <string name="voucher_desc_10">Giảm 10% đơn hàng đầu tiên</string>
+    <string name="voucher_code_20">VIP20</string>
+    <string name="voucher_desc_20">Giảm 20% đặc quyền thành viên TCFurnish</string>
+    <string name="voucher_code_100k">NOITHAT100K</string>
+    <string name="voucher_desc_100k">Giảm trực tiếp 100.000đ</string>
+    <string name="dialog_close">ĐÓNG</string>
+    <string name="support_dialog_title">Hệ Thống Showroom &amp; CSKH TCFurnish</string>
+    <string name="support_dialog_subtitle">TCFurnish - Tuyệt tác không gian sống:</string>
+    <string name="support_showroom_hn">Flagship Showroom: 54 Liễu Giai, Ba Đình, Hà Nội</string>
+    <string name="support_showroom_hcm">Showroom TP.HCM: 188 Nguyễn Văn Trỗi, Phú Nhuận, TP.HCM</string>
+    <string name="support_hotline">Hotline Chăm sóc Khách hàng: 1900 8888 (08:30 – 21:30 hàng ngày)</string>
+    <string name="support_email">Email hỗ trợ: cskh@tcfurnish.vn</string>
+    <string name="dialog_call_now">GỌI NGAY</string>
+    <string name="warranty_dialog_title">Chính Sách Bảo Hành &amp; Đổi Trả TCFurnish</string>
+    <string name="warranty_dialog_subtitle">Tiêu chuẩn dịch vụ hậu mãi TCFurnish:</string>
+    <string name="warranty_item_1">1. Bảo hành kết cấu gỗ &amp; khung sườn: 05 năm chính hãng.</string>
+    <string name="warranty_item_2">2. Bảo hành đệm mút &amp; bề mặt da/nỉ: 02 năm theo tiêu chuẩn.</string>
+    <string name="warranty_item_3">3. Đổi mới trong 30 ngày đối với lỗi kỹ thuật từ nhà xưởng.</string>
+    <string name="warranty_item_4">4. Miễn phí vận chuyển và lắp đặt hoàn thiện tại nhà.</string>
+    <string name="warranty_item_5">5. Bảo dưỡng và đánh bóng bề mặt gỗ định kỳ trọn đời.</string>
+    <string name="logout_dialog_title">Đăng xuất tài khoản</string>
+    <string name="logout_dialog_message">Bạn có chắc chắn muốn đăng xuất khỏi tài khoản này?</string>
+    <string name="dialog_logout">ĐĂNG XUẤT</string>
     <!-- Web Client ID từ Firebase Console -> Authentication -> Sign-in method -> Google -->
     <string name="default_web_client_id">852460858845-fnoj1qojq4v0eako77kjfc5ggpur78h3.apps.googleusercontent.com</string>
 </resources>

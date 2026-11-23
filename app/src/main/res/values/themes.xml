@@ -12,5 +12,8 @@
         <!-- Status bar color & Window Background -->
         <item name="android:statusBarColor">@color/brand_primary_dark</item>
         <item name="android:windowBackground">@color/brand_bg_warm</item>
+        <!-- Default Vietnamese-safe font family -->
+        <item name="android:fontFamily">@font/be_vietnam_pro</item>
+        <item name="fontFamily">@font/be_vietnam_pro</item>
     </style>
 </resources>

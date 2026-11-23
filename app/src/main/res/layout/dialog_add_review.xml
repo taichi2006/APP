@@ -19,7 +19,7 @@
             android:id="@+id/tv_dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/be_vietnam_pro"
             android:text="Đánh giá sản phẩm"
             android:textColor="@color/brand_text_dark"
             android:textSize="18sp"

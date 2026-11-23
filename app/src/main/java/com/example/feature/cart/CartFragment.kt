@@ -1,6 +1,5 @@
 package com.example.feature.cart
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,20 +76,26 @@ class CartFragment :Fragment(R.layout.fragment_cart) {
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.deleteDialog.collectLatest {
-                val alertDialog = AlertDialog.Builder(requireContext()).apply {
-                    setTitle("Xóa sản phẩm khỏi giỏ")
-                    setMessage("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng không?")
-                    setNegativeButton("Hủy"){ dialog,_ ->
-                        dialog.dismiss()
-                        dialog.cancel()
-                    }
-                    setPositiveButton("Xóa"){ dialog,_ ->
-                       viewModel.deleteCartProduct(it)
-                    }
+            viewModel.deleteDialog.collectLatest { cartProduct ->
+                val dialog = android.app.Dialog(requireContext())
+                val view = layoutInflater.inflate(R.layout.dialog_delete_cart_item, null)
+                dialog.setContentView(view)
+                dialog.window?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
+
+                view.findViewById<View>(R.id.btn_dialog_cancel).setOnClickListener {
+                    dialog.dismiss()
                 }
-                alertDialog.create()
-                alertDialog.show()
+
+                view.findViewById<View>(R.id.btn_dialog_delete).setOnClickListener {
+                    viewModel.deleteCartProduct(cartProduct)
+                    dialog.dismiss()
+                }
+
+                dialog.show()
+                dialog.window?.setLayout(
+                    (resources.displayMetrics.widthPixels * 0.90).toInt(),
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
             }
         }
 

@@ -1,8 +1,8 @@
 package com.example.feature.order
 
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -26,7 +26,7 @@ class BillingProductAdapter : RecyclerView.Adapter<BillingProductAdapter.Billing
                     .into(imageCartProduct)
 
                 tvProductCartName.text = billingProduct.product.name
-                tvBillingProductQuantity.text = billingProduct.quantity.toString()
+                tvBillingProductQuantity.text = itemView.context.getString(R.string.quantity_format, billingProduct.quantity)
                 tvProductCartPrice.text = PriceCalculator.formatPriceVnd(billingProduct.product.price)
 
                 billingProduct.product.offerPercentage?.let {
@@ -35,16 +35,30 @@ class BillingProductAdapter : RecyclerView.Adapter<BillingProductAdapter.Billing
                     tvProductCartPrice.text = PriceCalculator.formatPriceVnd(priceAfterOffer)
                 }
 
-                imageCartProductColor.setImageDrawable(
-                    ColorDrawable(
-                        billingProduct.selectedColor ?: Color.TRANSPARENT
-                    )
-                )
-                tvCartProductSize.text = billingProduct.selectedSize ?: "".also {
-                    imageCartProductSize.setImageDrawable(
-                        ColorDrawable(Color.TRANSPARENT)
-                    )
+                val colorVal = billingProduct.selectedColor
+                val hasColor = colorVal != null && colorVal != 0
+                if (hasColor) {
+                    tvBillingColorLabel.visibility = View.VISIBLE
+                    imageCartProductColor.visibility = View.VISIBLE
+                    imageCartProductColor.setImageDrawable(ColorDrawable(colorVal!!))
+                } else {
+                    tvBillingColorLabel.visibility = View.GONE
+                    imageCartProductColor.visibility = View.GONE
                 }
+
+                val sizeText = billingProduct.selectedSize
+                val hasSize = !sizeText.isNullOrBlank()
+                if (hasSize) {
+                    tvCartProductSize.visibility = View.VISIBLE
+                    tvCartProductSize.text = sizeText
+                    val params = tvCartProductSize.layoutParams as ViewGroup.MarginLayoutParams
+                    params.marginStart = if (hasColor) (6 * itemView.resources.displayMetrics.density).toInt() else 0
+                    tvCartProductSize.layoutParams = params
+                } else {
+                    tvCartProductSize.visibility = View.GONE
+                }
+
+                layoutBillingOptions.visibility = if (hasColor || hasSize) View.VISIBLE else View.GONE
             }
         }
     }

@@ -123,15 +123,16 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             val unselectedBg = Color.parseColor("#FAF3E8")
             val textDark = ContextCompat.getColor(requireContext(), R.color.brand_text_dark)
 
+            val chipTypeface = androidx.core.content.res.ResourcesCompat.getFont(requireContext(), R.font.sf_pro_display)
             chips.forEach { (chip, _) ->
                 if (chip == selectedChip) {
                     chip.backgroundTintList = ColorStateList.valueOf(selectedBg)
                     chip.setTextColor(Color.WHITE)
-                    chip.setTypeface(null, android.graphics.Typeface.BOLD)
+                    chip.setTypeface(chipTypeface, android.graphics.Typeface.BOLD)
                 } else {
                     chip.backgroundTintList = ColorStateList.valueOf(unselectedBg)
                     chip.setTextColor(textDark)
-                    chip.setTypeface(null, android.graphics.Typeface.NORMAL)
+                    chip.setTypeface(chipTypeface, android.graphics.Typeface.NORMAL)
                 }
             }
         }

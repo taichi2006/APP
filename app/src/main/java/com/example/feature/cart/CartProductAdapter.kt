@@ -1,8 +1,8 @@
 package com.example.feature.cart
 
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -25,8 +25,30 @@ class CartProductAdapter : RecyclerView.Adapter<CartProductAdapter.CartProductVi
                 val priceAfterOffer = PriceCalculator.getProductPrice(cartProduct.product.offerPercentage, cartProduct.product.price)
                 tvProductCartPrice.text = PriceCalculator.formatPriceVnd(priceAfterOffer)
 
-                imgCartProdColor.setImageDrawable(ColorDrawable(cartProduct.selectedColor?: Color.TRANSPARENT))
-                tvCartProdSize.text = cartProduct.selectedSize?:"".also { imgCartProdSize.setImageDrawable(ColorDrawable(Color.TRANSPARENT)) }
+                val colorVal = cartProduct.selectedColor
+                val hasColor = colorVal != null && colorVal != 0
+                if (hasColor) {
+                    tvCartColorLabel.visibility = View.VISIBLE
+                    imgCartProdColor.visibility = View.VISIBLE
+                    imgCartProdColor.setImageDrawable(ColorDrawable(colorVal!!))
+                } else {
+                    tvCartColorLabel.visibility = View.GONE
+                    imgCartProdColor.visibility = View.GONE
+                }
+
+                val sizeText = cartProduct.selectedSize
+                val hasSize = !sizeText.isNullOrBlank()
+                if (hasSize) {
+                    tvCartProdSize.visibility = View.VISIBLE
+                    tvCartProdSize.text = sizeText
+                    val params = tvCartProdSize.layoutParams as ViewGroup.MarginLayoutParams
+                    params.marginStart = if (hasColor) (8 * itemView.resources.displayMetrics.density).toInt() else 0
+                    tvCartProdSize.layoutParams = params
+                } else {
+                    tvCartProdSize.visibility = View.GONE
+                }
+
+                layoutOptions.visibility = if (hasColor || hasSize) View.VISIBLE else View.GONE
             }
         }
 

@@ -61,7 +61,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
+                        android:fontFamily="@font/be_vietnam_pro"
                         android:text="Đơn mua của tôi"
                         android:textColor="@color/brand_text_dark"
                         android:textSize="18sp"
@@ -154,7 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_light"
+            android:fontFamily="@font/be_vietnam_pro"
             android:text="Chưa có đơn hàng nào"
             android:textColor="@color/brand_text_dark"
             android:textSize="17sp"

@@ -44,16 +44,22 @@ class OrderDetailProductAdapter : RecyclerView.Adapter<OrderDetailProductAdapter
                 }
 
                 val colorVal = cartProduct.selectedColor
-                if (colorVal != null && colorVal != 0) {
+                val hasColor = colorVal != null && colorVal != 0
+                if (hasColor) {
+                    tvProductColorLabel.visibility = View.VISIBLE
                     imgProductColor.visibility = View.VISIBLE
-                    imgProductColor.setImageDrawable(ColorDrawable(colorVal))
+                    imgProductColor.setImageDrawable(ColorDrawable(colorVal!!))
                 } else {
+                    tvProductColorLabel.visibility = View.GONE
                     imgProductColor.visibility = View.GONE
                 }
 
                 if (!cartProduct.selectedSize.isNullOrBlank()) {
                     tvProductSize.visibility = View.VISIBLE
                     tvProductSize.text = cartProduct.selectedSize
+                    val params = tvProductSize.layoutParams as ViewGroup.MarginLayoutParams
+                    params.marginStart = if (hasColor) (6 * itemView.resources.displayMetrics.density).toInt() else 0
+                    tvProductSize.layoutParams = params
                 } else {
                     tvProductSize.visibility = View.GONE
                 }

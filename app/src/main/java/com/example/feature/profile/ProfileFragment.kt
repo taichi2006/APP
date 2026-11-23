@@ -1,6 +1,5 @@
 package com.example.feature.profile
 
-import android.app.AlertDialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -130,81 +129,107 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun showVouchersDialog() {
         SoundHelper.playClickSound()
-        val vouchers = arrayOf(
-            "TCFURNISH10: Giảm 10% đơn hàng đầu tiên",
-            "VIP20: Giảm 20% đặc quyền thành viên TCFurnish",
-            "NOITHAT100K: Giảm trực tiếp 100.000đ"
-        )
-        AlertDialog.Builder(requireContext())
-            .setTitle("Kho Voucher Ưu Đãi")
-            .setItems(vouchers) { _, which ->
-                val code = when (which) {
-                    0 -> "TCFURNISH10"
-                    1 -> "VIP20"
-                    else -> "NOITHAT100K"
-                }
+        val dialog = android.app.Dialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.dialog_vouchers, null)
+        dialog.setContentView(view)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val bindVoucherCopy = { viewId: Int, code: String ->
+            view.findViewById<View>(viewId).setOnClickListener {
                 copyToClipboard(code)
                 Toast.makeText(requireContext(), "Đã sao chép mã $code", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
             }
-            .setPositiveButton("Đóng", null)
-            .show()
+        }
+
+        bindVoucherCopy(R.id.item_voucher_10, "TCFURNISH10")
+        bindVoucherCopy(R.id.item_voucher_20, "VIP20")
+        bindVoucherCopy(R.id.item_voucher_100k, "NOITHAT100K")
+
+        view.findViewById<View>(R.id.btn_voucher_close).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.90).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
     }
 
     private fun showSupportHotlineDialog() {
         SoundHelper.playClickSound()
-        AlertDialog.Builder(requireContext())
-            .setTitle("Hệ Thống Showroom & CSKH TCFurnish")
-            .setMessage(
-                "TCFurnish - Tuyệt tác không gian sống:\n\n" +
-                "• Flagship Showroom: 54 Liễu Giai, Ba Đình, Hà Nội\n" +
-                "• Showroom TP.HCM: 188 Nguyễn Văn Trỗi, Phú Nhuận, TP.HCM\n" +
-                "• Hotline Chăm sóc Khách hàng: 1900 8888 (08:30 - 21:30 hàng ngày)\n" +
-                "• Email hỗ trợ: cskh@tcfurnish.vn"
-            )
-            .setPositiveButton("Gọi ngay") { _, _ ->
-                try {
-                    val intent = Intent(Intent.ACTION_DIAL).apply {
-                        data = android.net.Uri.parse("tel:19008888")
-                    }
-                    startActivity(intent)
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Không thể mở ứng dụng cuộc gọi", Toast.LENGTH_SHORT).show()
+        val dialog = android.app.Dialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.dialog_support_hotline, null)
+        dialog.setContentView(view)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        view.findViewById<View>(R.id.btn_support_close).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        view.findViewById<View>(R.id.btn_support_call).setOnClickListener {
+            dialog.dismiss()
+            try {
+                val intent = Intent(Intent.ACTION_DIAL).apply {
+                    data = android.net.Uri.parse("tel:19008888")
                 }
+                startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Không thể mở ứng dụng cuộc gọi", Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton("Đóng", null)
-            .show()
+        }
+
+        dialog.show()
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.90).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
     }
 
     private fun showWarrantyPolicyDialog() {
         SoundHelper.playClickSound()
-        AlertDialog.Builder(requireContext())
-            .setTitle("Chính Sách Bảo Hành & Đổi Trả TCFurnish")
-            .setMessage(
-                "Tiêu chuẩn dịch vụ hậu mãi TCFurnish:\n\n" +
-                "1. Bảo hành kết cấu gỗ & khung sườn: 05 năm chính hãng.\n" +
-                "2. Bảo hành đệm mút & bề mặt da/nỉ: 02 năm theo tiêu chuẩn.\n" +
-                "3. Đổi mới trong 30 ngày đối với lỗi kỹ thuật từ nhà xưởng.\n" +
-                "4. Miễn phí vận chuyển và lắp đặt hoàn thiện tại nhà.\n" +
-                "5. Bảo dưỡng và đánh bóng bề mặt gỗ định kỳ trọn đời."
-            )
-            .setPositiveButton("Đóng", null)
-            .show()
+        val dialog = android.app.Dialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.dialog_warranty_policy, null)
+        dialog.setContentView(view)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        view.findViewById<View>(R.id.btn_warranty_close).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.90).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
     }
 
     private fun showLogoutConfirmationDialog() {
         SoundHelper.playClickSound()
-        AlertDialog.Builder(requireContext())
-            .setTitle("Đăng xuất tài khoản")
-            .setMessage("Bạn có chắc chắn muốn đăng xuất khỏi tài khoản này?")
-            .setNegativeButton("Hủy", null)
-            .setPositiveButton("Đăng xuất") { _, _ ->
-                viewModel.signOut()
-                val intent = Intent(requireActivity(), LoginRegisterActivity::class.java)
-                startActivity(intent)
-                requireActivity().finish()
-                Toast.makeText(requireContext(), "Đã đăng xuất tài khoản", Toast.LENGTH_SHORT).show()
-            }
-            .show()
+        val dialog = android.app.Dialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.dialog_logout_confirmation, null)
+        dialog.setContentView(view)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        view.findViewById<View>(R.id.btn_logout_cancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        view.findViewById<View>(R.id.btn_logout_confirm).setOnClickListener {
+            dialog.dismiss()
+            viewModel.signOut()
+            val intent = Intent(requireActivity(), LoginRegisterActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+            Toast.makeText(requireContext(), "Đã đăng xuất tài khoản", Toast.LENGTH_SHORT).show()
+        }
+
+        dialog.show()
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.90).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
     }
 
     private fun copyToClipboard(text: String) {

@@ -326,9 +326,8 @@ class BillingFragment : Fragment() {
 
     private fun setupBillingProductsRv() {
         binding.rvProducts.apply {
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             adapter = billingProductAdapter
-            addItemDecoration(HorizontalItemDecoration())
         }
     }
 }

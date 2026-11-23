@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="2dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="4dp"
     app:cardBackgroundColor="@color/brand_surface"
     app:cardCornerRadius="12dp"
-    android:layout_marginEnd="10dp"
     app:cardElevation="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/imageCartProduct"
@@ -27,63 +31,84 @@
 
         <TextView
             android:id="@+id/tvProductCartName"
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/poppins_light"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/be_vietnam_pro"
             android:text="Ghế Sofa"
             android:textColor="@color/brand_text_dark"
             android:textSize="13sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tvBillingProductQuantity"
             app:layout_constraintStart_toEndOf="@id/imageCartProduct"
             app:layout_constraintTop_toTopOf="@id/imageCartProduct"
-            android:lines="1"
+            android:maxLines="2"
             android:ellipsize="end" />
 
         <TextView
             android:id="@+id/tvProductCartPrice"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/sf_pro_display"
             android:text="1.560.000 đ"
             android:textColor="@color/brand_primary"
             android:textSize="12sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tvBillingProductQuantity"
             app:layout_constraintStart_toStartOf="@id/tvProductCartName"
             app:layout_constraintTop_toBottomOf="@id/tvProductCartName"/>
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageCartProductColor"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_marginTop="4dp"
-            android:src="@color/brand_primary"
-            app:layout_constraintStart_toStartOf="@id/tvProductCartPrice"
-            app:layout_constraintTop_toBottomOf="@id/tvProductCartPrice"/>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageCartProductSize"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="6dp"
-            android:src="@color/brand_secondary"
-            app:layout_constraintStart_toEndOf="@id/imageCartProductColor"
-            app:layout_constraintTop_toTopOf="@id/imageCartProductColor"/>
-
-        <TextView
-            android:id="@+id/tvCartProductSize"
+        <LinearLayout
+            android:id="@+id/layoutBillingOptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="L"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/imageCartProductSize"
-            app:layout_constraintTop_toTopOf="@id/imageCartProductSize"
-            app:layout_constraintStart_toStartOf="@id/imageCartProductSize"
-            app:layout_constraintEnd_toEndOf="@id/imageCartProductSize"/>
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/tvBillingProductQuantity"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/tvProductCartPrice"
+            app:layout_constraintTop_toBottomOf="@id/tvProductCartPrice">
+
+            <TextView
+                android:id="@+id/tvBillingColorLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:text="@string/color_label"
+                android:textColor="@color/brand_text_muted"
+                android:textSize="11sp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageCartProductColor"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@color/brand_primary"
+                app:civ_border_color="@color/brand_border"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/tvCartProductSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/white_background"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingStart="6dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/brand_text_dark"
+                android:textSize="11sp"
+                tools:text="180x200cm" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvBillingProductQuantity"
@@ -97,8 +122,7 @@
             android:textColor="@color/brand_text_muted"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="6dp"/>
+            android:layout_marginEnd="4dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
