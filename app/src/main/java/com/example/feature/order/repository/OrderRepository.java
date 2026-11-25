@@ -311,29 +311,32 @@ public class OrderRepository {
         String date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
 
         WriteBatch batch = firestore.batch();
-        if (order.getProducts() != null && !order.getProducts().isEmpty()) {
+        int count = 0;
+        if (order.getProducts() != null) {
             for (CartProduct cp : order.getProducts()) {
                 if (cp != null && cp.getProduct() != null && cp.getProduct().getId() != null) {
                     String pid = cp.getProduct().getId();
-                    String reviewId = "rev_" + orderIdStr + "_" + pid;
-                    Review r = new Review(reviewId, pid, orderIdStr, userName, userEmail, rating, comment, date);
-                    batch.set(firestore.collection("reviews").document(reviewId), r);
+                    String revId = "rev_" + orderIdStr + "_" + pid;
+                    batch.set(firestore.collection("reviews").document(revId), new Review(revId, pid, orderIdStr, userName, userEmail, rating, comment, date));
+                    count++;
                 }
             }
         }
+        if (count == 0) {
+            String revId = "rev_" + orderIdStr + "_general";
+            batch.set(firestore.collection("reviews").document(revId), new Review(revId, "sofa_01", orderIdStr, userName, userEmail, rating, comment, date));
+        }
 
-        DocumentReference userOrderRef = firestore.collection("user").document(uid).collection("orders").document(orderIdStr);
-        batch.update(userOrderRef, "reviewed", true);
-        DocumentReference globalOrderRef = firestore.collection("orders").document(orderIdStr);
-        batch.update(globalOrderRef, "reviewed", true);
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("reviewed", true);
+        batch.set(firestore.collection("user").document(uid).collection("orders").document(orderIdStr), updateMap, com.google.firebase.firestore.SetOptions.merge());
+        batch.set(firestore.collection("orders").document(orderIdStr), updateMap, com.google.firebase.firestore.SetOptions.merge());
 
-        batch.commit()
-                .addOnSuccessListener(aVoid -> {
-                    order.setReviewed(true);
-                    if (callback != null) callback.onSuccess(null);
-                })
-                .addOnFailureListener(e -> {
-                    if (callback != null) callback.onError(e.getMessage() != null ? e.getMessage() : "Lỗi lưu đánh giá");
-                });
+        batch.commit().addOnSuccessListener(aVoid -> {
+            order.setReviewed(true);
+            if (callback != null) callback.onSuccess(null);
+        }).addOnFailureListener(e -> {
+            if (callback != null) callback.onError(e.getMessage() != null ? e.getMessage() : "Lỗi lưu đánh giá");
+        });
     }
 }
