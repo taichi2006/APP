@@ -32,11 +32,14 @@ import com.google.ar.sceneform.SceneView;
 import com.google.ar.sceneform.collision.Box;
 import com.google.ar.sceneform.math.Quaternion;
 import com.google.ar.sceneform.math.Vector3;
+import com.google.android.filament.MaterialInstance;
+import com.google.android.filament.gltfio.FilamentAsset;
 import com.google.ar.sceneform.rendering.Color;
 import com.google.ar.sceneform.rendering.Material;
 import com.google.ar.sceneform.rendering.MaterialFactory;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.Renderable;
+import com.google.ar.sceneform.rendering.RenderableInstance;
 import com.google.ar.sceneform.rendering.ShapeFactory;
 
 import java.util.Collections;
@@ -148,13 +151,30 @@ public class ARSceneDelegate implements View.OnTouchListener {
     }
 
     public void applyColorToModel(int argb) {
-        if (model == null) return;
-        Color scColor = new Color(android.graphics.Color.red(argb) / 255f, android.graphics.Color.green(argb) / 255f, android.graphics.Color.blue(argb) / 255f, 1.0f);
-        for (int i = 0; i < model.getSubmeshCount(); i++) {
-            Material mat = model.getMaterial(i);
+        if (model3DNode == null) return;
+        RenderableInstance instance = model3DNode.getRenderableInstance();
+        if (instance == null) return;
+
+        Color scColor = new Color(argb);
+        scColor.a = 1.0f;
+
+        for (int i = 0; i < instance.getMaterialsCount(); i++) {
+            Material mat = instance.getMaterial(i);
             if (mat != null) {
-                mat.setFloat3("baseColorFactor", scColor.r, scColor.g, scColor.b);
-                mat.setFloat4("baseColorFactor", scColor.r, scColor.g, scColor.b, 1.0f);
+                try {
+                    mat.setFloat4("baseColorFactor", scColor);
+                } catch (Exception ignored) {}
+            }
+        }
+
+        FilamentAsset filamentAsset = instance.getFilamentAsset();
+        if (filamentAsset != null) {
+            for (MaterialInstance mi : filamentAsset.getMaterialInstances()) {
+                if (mi != null) {
+                    try {
+                        mi.setParameter("baseColorFactor", scColor.r, scColor.g, scColor.b, 1.0f);
+                    } catch (Exception ignored) {}
+                }
             }
         }
     }
