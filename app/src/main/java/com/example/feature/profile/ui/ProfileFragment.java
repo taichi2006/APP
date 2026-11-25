@@ -78,6 +78,17 @@ public class ProfileFragment extends Fragment {
 
         binding.linearWarrantyPolicy.setOnClickListener(v -> showWarrantyPolicyDialog());
 
+        binding.tvVersion.setOnClickListener(v -> {
+            Toast.makeText(requireContext(), "Đang khởi tạo lại dữ liệu demo chuẩn...", Toast.LENGTH_SHORT).show();
+            com.example.core.util.DatabaseSeeder.seedAllData((success, msg) -> {
+                if (success) {
+                    Toast.makeText(requireContext(), "Đã khởi tạo dữ liệu chuẩn ORD001, ORD002, ORD003 thành công!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(requireContext(), "Lỗi khởi tạo: " + msg, Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+
         binding.linearLogOut.setOnClickListener(v -> showLogoutConfirmationDialog());
     }
 

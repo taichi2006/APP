@@ -126,37 +126,53 @@ public class DatabaseSampleData {
         List<Order> list = new ArrayList<>();
         List<Product> products = getSampleProducts();
 
-        Address addr1 = new Address("Nhà riêng", "Nguyễn Văn An", "12 Nguyễn Huệ, P. Bến Nghé", "0901234567", "Quận 1", "TP. Hồ Chí Minh");
-        addr1.setId("ADR001");
+        Address addr = new Address("Nhà riêng", "Chí Tài", "12 Nguyễn Huệ, P. Bến Nghé", "0901234567", "Quận 1", "TP. Hồ Chí Minh");
+        addr.setId("ADR001");
+
+        // Đơn 1: Đã nhận (Sofa Băng Nỉ Hiện Đại - 4.500.000đ)
         List<CartProduct> cp1 = new ArrayList<>();
         if (!products.isEmpty()) {
             cp1.add(new CartProduct(products.get(0), 1, 0xFF1B2A4A, "2m"));
         }
-        Order o1 = new Order("Đã giao hàng", 4500000f, cp1, addr1, "20/11/2026 14:30", 1L, "Cổng Sandbox VNPAY (Trực tuyến)", "Đã thanh toán (Mã GD: VNPAY_982341)");
+        Order o1 = new Order("Đã nhận", 4500000f, cp1, addr, "20/11/2026 14:30", 1L, "Cổng Sandbox VNPAY (Trực tuyến)", "Đã thanh toán (Mã GD: VNPAY_982341)");
         o1.setOrderCode("ORD001");
         o1.setNote("Giao giờ hành chính");
+        o1.setReviewed(false);
         list.add(o1);
 
-        Address addr2 = new Address("Công ty", "Trần Thị Mai", "88 Lê Lợi, P. Bến Thành", "0912345678", "Quận 1", "TP. Hồ Chí Minh");
-        addr2.setId("ADR002");
+        // Đơn 2: Đang giao (Bàn Ăn Gỗ Tự Nhiên - 5.600.000đ)
         List<CartProduct> cp2 = new ArrayList<>();
         if (products.size() > 4) {
             cp2.add(new CartProduct(products.get(4), 1, 0xFF8B5A2B, "1m6 x 90cm"));
         }
-        Order o2 = new Order("Đang giao hàng", 5600000f, cp2, addr2, "23/11/2026 09:15", 2L, "Thanh toán khi nhận hàng (COD)", "Chờ thu tiền");
+        Order o2 = new Order("Đang giao", 5600000f, cp2, addr, "23/11/2026 09:15", 2L, "Thanh toán khi nhận hàng (COD)", "Chờ thu tiền");
         o2.setOrderCode("ORD002");
         o2.setNote("Gọi trước khi giao 15 phút");
+        o2.setReviewed(false);
         list.add(o2);
+
+        // Đơn 3: Đã đặt (Ghế Bành Thư Giãn Armchair - 2.800.000đ)
+        List<CartProduct> cp3 = new ArrayList<>();
+        if (products.size() > 2) {
+            cp3.add(new CartProduct(products.get(2), 1, 0xFF556B2F, "Tiêu chuẩn"));
+        }
+        Order o3 = new Order("Đã đặt", 2800000f, cp3, addr, "25/11/2026 11:20", 3L, "Thanh toán khi nhận hàng (COD)", "Chờ xác nhận");
+        o3.setOrderCode("ORD003");
+        o3.setNote("Hàng dễ vỡ xin nhẹ tay");
+        o3.setReviewed(false);
+        list.add(o3);
 
         return list;
     }
 
     public static List<Payment> getSamplePayments() {
         List<Payment> list = new ArrayList<>();
-        list.add(new Payment("PAY001", 1L, "USR001", "an.nguyen@gmail.com", 4500000.0,
+        list.add(new Payment("PAY001", 1L, "USR001", "chitai@gmail.com", 4500000.0,
                 "Sandbox (VNPAY)", "SUCCESS", "TXN_982341", "NCB", "Thanh toán đơn hàng ORD001"));
-        list.add(new Payment("PAY002", 2L, "USR002", "mai.tran@gmail.com", 5600000.0,
+        list.add(new Payment("PAY002", 2L, "USR002", "chitai@gmail.com", 5600000.0,
                 "COD", "PENDING", "COD_002", "CASH", "Thanh toán khi nhận hàng ORD002"));
+        list.add(new Payment("PAY003", 3L, "USR003", "chitai@gmail.com", 2800000.0,
+                "COD", "PENDING", "COD_003", "CASH", "Thanh toán khi nhận hàng ORD003"));
         return list;
     }
 }
