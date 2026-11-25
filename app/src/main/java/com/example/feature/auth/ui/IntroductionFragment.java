@@ -16,7 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.aroom.R;
 import com.example.aroom.databinding.FragmentIntroductionBinding;
 import com.example.feature.auth.viewmodel.IntroductionViewModel;
-import com.example.feature.main.ui.ShoppingActivity;
+import com.example.feature.main.ShoppingActivity;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

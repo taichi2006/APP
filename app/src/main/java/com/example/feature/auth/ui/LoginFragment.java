@@ -20,7 +20,7 @@ import com.example.aroom.R;
 import com.example.aroom.databinding.FragmentLoginBinding;
 import com.example.core.util.Resource;
 import com.example.feature.auth.viewmodel.LoginViewModel;
-import com.example.feature.main.ui.ShoppingActivity;
+import com.example.feature.main.ShoppingActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

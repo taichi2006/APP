@@ -1,4 +1,4 @@
-package com.example.feature.main.ui;
+package com.example.feature.main;
 
 import android.os.Bundle;
 

@@ -14,7 +14,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.aroom.R;
-import com.example.feature.main.ui.ShoppingActivity;
+import com.example.feature.main.ShoppingActivity;
 
 /**
  * Quản lý thông báo cục bộ (Local Notifications) cho đơn hàng và hệ thống

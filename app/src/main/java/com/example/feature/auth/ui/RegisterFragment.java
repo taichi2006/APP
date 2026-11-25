@@ -22,7 +22,7 @@ import com.example.core.util.RegisterFieldsState;
 import com.example.core.util.RegisterValidation;
 import com.example.core.util.Resource;
 import com.example.feature.auth.viewmodel.RegisterViewModel;
-import com.example.feature.main.ui.ShoppingActivity;
+import com.example.feature.main.ShoppingActivity;
 import com.example.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
