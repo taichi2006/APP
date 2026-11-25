@@ -23,6 +23,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.ARoom"
         tools:targetApi="31" >
 
@@ -31,7 +32,7 @@
             android:value="optional" />
 
         <activity
-            android:name="com.example.feature.auth.LoginRegisterActivity"
+            android:name="com.example.feature.auth.ui.LoginRegisterActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" >
@@ -42,7 +43,7 @@
         </activity>
 
         <activity
-            android:name="com.example.feature.main.ShoppingActivity"
+            android:name="com.example.feature.main.ui.ShoppingActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

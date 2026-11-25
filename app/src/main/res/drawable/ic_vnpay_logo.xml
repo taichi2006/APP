@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="36dp"
+    android:viewportWidth="120"
+    android:viewportHeight="36">
+    <!-- Icon VNPAY: Chữ V & cánh buồm màu xanh và đỏ -->
+    <!-- Khối xanh VNPAY (#005BAA) -->
+    <path
+        android:fillColor="#005BAA"
+        android:pathData="M8,6 L18,6 L25,28 L19,28 L16,18 L10,18 L7,28 L1,28 Z" />
+    <path
+        android:fillColor="#005BAA"
+        android:pathData="M27,6 L33,6 L42,20 L42,6 L47,6 L47,28 L41,28 L32,14 L32,28 L27,28 Z" />
+    <!-- Khối đỏ PAY (#ED1C24) -->
+    <path
+        android:fillColor="#ED1C24"
+        android:pathData="M52,6 L63,6 C67,6 70,8 70,12 C70,16 67,18 63,18 L57,18 L57,28 L52,28 Z M57,10 L57,14 L62,14 C64,14 65,13.5 65,12 C65,10.5 64,10 62,10 Z" />
+    <path
+        android:fillColor="#ED1C24"
+        android:pathData="M74,6 L80,6 L86,28 L81,28 L79.5,22 L74.5,22 L73,28 L68,28 Z M75.5,18 L78.5,18 L77,11 Z" />
+    <path
+        android:fillColor="#ED1C24"
+        android:pathData="M90,6 L95,6 L99,15 L103,6 L108,6 L101.5,19 L101.5,28 L96.5,28 L96.5,19 Z" />
+    <!-- Tag Sandbox nhỏ bên cạnh -->
+    <path
+        android:fillColor="#F1F5F9"
+        android:pathData="M110,6 L118,6 A2,2 0 0,1 120,8 L120,16 A2,2 0 0,1 118,18 L110,18 Z" />
+</vector>

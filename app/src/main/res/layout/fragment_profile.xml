@@ -203,13 +203,13 @@
                     android:layout_marginBottom="12dp"
                     android:background="@color/brand_border" />
 
-                <!-- 4 Order Status Buttons -->
+                <!-- 3 Order Status Buttons (Đã đặt, Đang giao, Đã nhận) -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!-- 1. Chờ xác nhận -->
+                    <!-- 1. Đã đặt -->
                     <LinearLayout
                         android:id="@+id/btnStatusOrdered"
                         android:layout_width="0dp"
@@ -221,8 +221,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:src="@drawable/ic_receipt_long"
                             app:tint="@color/brand_primary" />
 
@@ -231,39 +231,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:fontFamily="@font/sf_pro_display"
-                            android:text="Chờ xác nhận"
+                            android:text="Đã đặt"
                             android:textColor="@color/brand_text_dark"
-                            android:textSize="11sp" />
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                    <!-- 2. Đã xác nhận -->
-                    <LinearLayout
-                        android:id="@+id/btnStatusConfirmed"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_package_box"
-                            app:tint="@color/brand_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="@font/sf_pro_display"
-                            android:text="Đã xác nhận"
-                            android:textColor="@color/brand_text_dark"
-                            android:textSize="11sp" />
-                    </LinearLayout>
-
-                    <!-- 3. Đang giao -->
+                    <!-- 2. Đang giao -->
                     <LinearLayout
                         android:id="@+id/btnStatusShipped"
                         android:layout_width="0dp"
@@ -275,8 +249,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:src="@drawable/ic_truck_delivery"
                             app:tint="@color/brand_primary" />
 
@@ -287,10 +261,11 @@
                             android:fontFamily="@font/sf_pro_display"
                             android:text="Đang giao"
                             android:textColor="@color/brand_text_dark"
-                            android:textSize="11sp" />
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                    <!-- 4. Đã nhận hàng -->
+                    <!-- 3. Đã nhận -->
                     <LinearLayout
                         android:id="@+id/btnStatusDelivered"
                         android:layout_width="0dp"
@@ -302,8 +277,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:src="@drawable/ic_star_delivered"
                             app:tint="@color/brand_secondary" />
 
@@ -312,9 +287,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:fontFamily="@font/sf_pro_display"
-                            android:text="Đã nhận hàng"
+                            android:text="Đã nhận"
                             android:textColor="@color/brand_text_dark"
-                            android:textSize="11sp" />
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.feature.cart.CartFragment"
+        android:name="com.example.feature.cart.ui.CartFragment"
         android:label="CartFragment"
         tools:layout="@layout/fragment_cart">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.feature.home.HomeFragment"
+        android:name="com.example.feature.home.ui.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.feature.profile.ProfileFragment"
+        android:name="com.example.feature.profile.ui.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.feature.search.SearchFragment"
+        android:name="com.example.feature.search.ui.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
         <action
@@ -61,36 +61,39 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.example.feature.product.ProductDetailsFragment"
+        android:name="com.example.feature.product.ui.ProductDetailsFragment"
         android:label="ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details">
         <argument
             android:name="product"
-            app:argType="com.example.data.Product" />
+            app:argType="com.example.model.Product" />
         <action
             android:id="@+id/action_productDetailsFragment_to_vrFragment"
             app:destination="@id/vrFragment" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_billingFragment"
+            app:destination="@id/billingFragment" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_vr"
         android:id="@+id/vrFragment"
-        android:name="com.example.feature.ar.VrFragment"
+        android:name="com.example.feature.product.ui.ARFragment"
         android:label="VrFragment" />
     <fragment
         android:id="@+id/addressFragment"
-        android:name="com.example.feature.order.AddressFragment"
+        android:name="com.example.feature.order.ui.AddressFragment"
         android:label="AddressFragment"
         tools:layout="@layout/fragment_address">
         <argument
             android:name="address"
-            app:argType="com.example.data.Address"
+            app:argType="com.example.model.Address"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_billing"
         android:id="@+id/billingFragment"
-        android:name="com.example.feature.order.BillingFragment"
+        android:name="com.example.feature.order.ui.BillingFragment"
         android:label="BillingFragment" >
         <action
             android:id="@+id/action_billingFragment_to_addressFragment"
@@ -104,7 +107,7 @@
             app:argType="float" />
         <argument
             android:name="products"
-            app:argType="com.example.data.CartProduct[]" />
+            app:argType="com.example.model.CartProduct[]" />
         <argument
             android:name="payment"
             app:argType="boolean" />
@@ -112,12 +115,12 @@
     <fragment
         tools:layout="@layout/fragment_user_account"
         android:id="@+id/userAccountFragment"
-        android:name="com.example.feature.auth.UserAccountFragment"
+        android:name="com.example.feature.profile.ui.UserAccountFragment"
         android:label="UserAccountFragment" />
     <fragment
         tools:layout="@layout/fragment_orders"
         android:id="@+id/ordersFragment"
-        android:name="com.example.feature.order.OrdersFragment"
+        android:name="com.example.feature.order.ui.OrdersFragment"
         android:label="OrdersFragment" >
         <argument
             android:name="initialStatus"
@@ -130,10 +133,10 @@
     <fragment
         android:id="@+id/orderDetailsFragment"
         tools:layout="@layout/fragment_order_detail"
-        android:name="com.example.feature.order.OrderDetailsFragment"
+        android:name="com.example.feature.order.ui.OrderDetailsFragment"
         android:label="OrderDetailsFragment" >
         <argument
             android:name="order"
-            app:argType="com.example.data.order.Order" />
+            app:argType="com.example.model.Order" />
     </fragment>
 </navigation>

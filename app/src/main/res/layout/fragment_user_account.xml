@@ -235,7 +235,8 @@
                     android:text="Quên / Đổi mật khẩu tài khoản ›"
                     android:textColor="@color/brand_secondary"
                     android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

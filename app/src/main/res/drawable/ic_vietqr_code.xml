@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Background -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M0,0h200v200h-200z" />
+
+    <!-- Top Left Corner Finder Pattern -->
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M16,16h56v56h-56z M28,28h32v32h-32z" />
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M36,36h16v16h-16z" />
+
+    <!-- Top Right Corner Finder Pattern -->
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M128,16h56v56h-56z M140,28h32v32h-32z" />
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M148,36h16v16h-16z" />
+
+    <!-- Bottom Left Corner Finder Pattern -->
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M16,128h56v56h-56z M28,140h32v32h-32z" />
+    <path
+        android:fillColor="#0F172A"
+        android:pathData="M36,148h16v16h-16z" />
+
+    <!-- Data Modules (Simulated QR Pixels) -->
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M84,16h8v8h-8z M100,16h8v8h-8z M84,32h8v8h-8z M108,32h8v8h-8z M92,44h8v8h-8z M84,56h16v8h-16z M108,56h8v8h-8z" />
+
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M16,84h8v8h-8z M32,84h16v8h-16z M56,84h8v8h-8z M72,84h16v8h-16z M96,84h8v8h-8z M112,84h16v8h-16z M136,84h8v8h-8z M152,84h16v8h-16z M176,84h8v8h-8z" />
+
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M16,100h16v8h-16z M40,100h8v8h-8z M56,100h8v8h-8z M80,96h8v16h-8z M104,96h16v8h-16z M128,100h8v8h-8z M144,100h16v8h-16z M168,100h8v8h-8z M184,100h8v8h-8z" />
+
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M16,116h8v8h-8z M32,116h8v8h-8z M48,116h16v8h-16z M72,116h8v8h-8z M88,116h16v8h-16z M120,116h8v8h-8z M136,116h16v8h-16z M160,116h8v8h-8z M176,116h16v8h-16z" />
+
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M84,128h8v8h-8z M100,128h16v8h-16z M124,128h8v8h-8z M140,128h8v8h-8z M156,128h16v8h-16z M180,128h8v8h-8z" />
+
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M84,144h16v8h-16z M108,144h8v8h-8z M124,144h16v8h-16z M148,144h8v8h-8z M164,144h8v8h-8z M180,144h12v8h-12z" />
+
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M84,160h8v8h-8z M100,160h8v8h-8z M116,160h16v8h-16z M140,160h8v8h-8z M156,160h8v8h-8z M172,160h16v8h-16z" />
+
+    <path
+        android:fillColor="#1E293B"
+        android:pathData="M84,176h16v8h-16z M108,176h8v8h-8z M124,176h8v8h-8z M140,176h16v8h-16z M164,176h8v8h-8z M180,176h8v8h-8z" />
+
+    <!-- Center Badge (VietQR / MB Bank Branding) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M78,78h44v44h-44z" />
+    <path
+        android:fillColor="#B88A44"
+        android:pathData="M82,82h36v36h-36z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M88,96h24v8h-24z M96,88h8v24h-8z" />
+</vector>

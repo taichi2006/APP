@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="12dp"
+    app:strokeColor="#E2E8F0"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="22dp"
+        android:paddingTop="26dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="24dp">
+
+        <!-- ICON THÀNH CÔNG NỔI BẬT -->
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:contentDescription="Đặt hàng thành công"
+            android:src="@drawable/ic_success_circle_check" />
+
+        <!-- TIÊU ĐỀ CHÍNH -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:text="Đặt hàng thành công!"
+            android:textColor="#0F172A"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- PHỤ ĐỀ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:gravity="center"
+            android:text="Cảm ơn quý khách đã mua sắm tại TCFurnish.\nĐơn hàng đã được lưu và đang chuẩn bị xuất kho."
+            android:textColor="#64748B"
+            android:textSize="13sp"
+            android:lineSpacingExtra="2dp" />
+
+        <!-- KHUNG TÓM TẮT HÓA ĐƠN GỌN GÀNG -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_rounded_card"
+            android:backgroundTint="#F8FAFC"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Dòng mã đơn hàng -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Mã đơn hàng:"
+                    android:textColor="#64748B"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvSuccessOrderId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:gravity="end"
+                    android:text="#84920"
+                    android:textColor="#005BAA"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Dòng phương thức thanh toán -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Hình thức:"
+                    android:textColor="#64748B"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvSuccessPaymentMethod"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:gravity="end"
+                    android:text="Cổng VNPAY (Thẻ NCB)"
+                    android:textColor="#1E293B"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Dòng tổng tiền thanh toán -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Tổng tiền:"
+                    android:textColor="#64748B"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvSuccessTotalAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:gravity="end"
+                    android:text="15.000.000đ"
+                    android:textColor="#B91C1C"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Dòng địa chỉ nhận -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Giao đến:"
+                    android:textColor="#64748B"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvSuccessAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:gravity="end"
+                    android:maxLines="2"
+                    android:text="123 Nguyễn Huệ, Quận 1, TP.HCM"
+                    android:textColor="#334155"
+                    android:textSize="12.5sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#E2E8F0" />
+
+            <!-- Cam kết dịch vụ shop -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/ic_truck_delivery"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Shop tự vận chuyển &amp; hỗ trợ lắp đặt tận nơi miễn phí."
+                android:textColor="#15803D"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- NÚT HÀNH ĐỘNG 1: THEO DÕI ĐƠN HÀNG -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSuccessTrackOrder"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/gold_button_background"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:stateListAnimator="@null"
+            android:text="THEO DÕI ĐƠN HÀNG"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- NÚT HÀNH ĐỘNG 2: TIẾP TỤC MUA SẮM -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSuccessContinueShopping"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_rounded_card"
+            android:backgroundTint="#F1F5F9"
+            android:fontFamily="@font/sf_pro_display"
+            android:stateListAnimator="@null"
+            android:text="Tiếp tục mua sắm"
+            android:textColor="#334155"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

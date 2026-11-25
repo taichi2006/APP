@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- TOP BAR VNPAY CHUYÊN NGHIỆP -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#F8FAFC"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp">
+
+        <ImageView
+            android:layout_width="85dp"
+            android:layout_height="26dp"
+            android:contentDescription="Logo VNPAY"
+            android:src="@drawable/ic_vnpay_logo" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:text="CỔNG THANH TOÁN VNPAY"
+                android:textColor="#005BAA"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- NÚT CẤU HÌNH KEY MERCHANT -->
+        <ImageButton
+            android:id="@+id/btnVnpayConfig"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Cấu hình tài khoản VNPAY"
+            android:src="@drawable/ic_support"
+            app:tint="#475569" />
+
+        <!-- NÚT ĐÓNG -->
+        <ImageButton
+            android:id="@+id/btnVnpayClose"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Đóng"
+            android:src="@drawable/ic_close"
+            app:tint="#1E293B" />
+    </LinearLayout>
+
+    <!-- THANH TIẾN TRÌNH TẢI TRANG WEB -->
+    <ProgressBar
+        android:id="@+id/vnpayProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:indeterminate="true"
+        android:progressTint="#005BAA" />
+
+    <!-- WEBVIEW TẢI TRANG WEB THẬT CỦA VNPAY SANDBOX -->
+    <WebView
+        android:id="@+id/vnpayWebView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

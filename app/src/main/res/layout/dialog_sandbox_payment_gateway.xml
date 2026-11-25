@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_background"
+    android:paddingStart="16dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Thanh kéo mở rộng -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:background="#CBD5E1" />
+
+        <!-- HEADER CỔNG THANH TOÁN VNPAY CHUẨN SANDBOX -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="95dp"
+                    android:layout_height="28dp"
+                    android:contentDescription="Logo VNPAY"
+                    android:src="@drawable/ic_vnpay_logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_rounded_badge"
+                    android:backgroundTint="#EFF6FF"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:paddingStart="6dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="2dp"
+                    android:text="SANDBOX"
+                    android:textColor="#005BAA"
+                    android:textSize="10.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Hotline: 1900 5555 77"
+                android:textColor="#64748B"
+                android:textSize="11.5sp" />
+        </RelativeLayout>
+
+        <!-- KHUNG THÔNG TIN ĐƠN HÀNG VNPAY (XANH NHẸ CHUẨN VNPAY) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rounded_card"
+            android:backgroundTint="#F0F7FF"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Đơn vị thụ hưởng: TCFURNISH HOME"
+                    android:textColor="#1E293B"
+                    android:textSize="12.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvGatewayCountdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Hết hạn: 14:59"
+                    android:textColor="#ED1C24"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="#DCE9F6" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Mã đơn hàng:"
+                        android:textColor="#64748B"
+                        android:textSize="11.5sp" />
+
+                    <TextView
+                        android:id="@+id/tvGatewayOrderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:text="#TXN84920"
+                        android:textColor="#005BAA"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Số tiền thanh toán:"
+                        android:textColor="#64748B"
+                        android:textSize="11.5sp" />
+
+                    <TextView
+                        android:id="@+id/tvGatewayAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:text="15.000.000 VND"
+                        android:textColor="#ED1C24"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- 2 TAB CHỌN PHƯƠNG THỨC THANH TOÁN VNPAY (BỎ HOÀN TOÀN QUÉT QR) -->
+        <LinearLayout
+            android:id="@+id/layoutGatewayTabs"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_rounded_card"
+            android:backgroundTint="#F1F5F9"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <!-- TAB 1: THẺ ATM / TÀI KHOẢN NGÂN HÀNG (NỘI ĐỊA) -->
+            <TextView
+                android:id="@+id/btnTabAtm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_card"
+                android:backgroundTint="#005BAA"
+                android:fontFamily="@font/sf_pro_display"
+                android:gravity="center"
+                android:text="Thẻ ATM / Tài khoản"
+                android:textColor="@color/white"
+                android:textSize="12.5sp"
+                android:textStyle="bold" />
+
+            <!-- TAB 2: THẺ QUỐC TẾ (VISA / MASTERCARD) -->
+            <TextView
+                android:id="@+id/btnTabVisa"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sf_pro_display"
+                android:gravity="center"
+                android:text="Thẻ Quốc Tế (Visa/Master)"
+                android:textColor="#475569"
+                android:textSize="12.5sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- ======================= KHỐI 1: THẺ ATM NỘI ĐỊA VNPAY ======================= -->
+        <LinearLayout
+            android:id="@+id/layoutAtmSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Chọn ngân hàng thanh toán qua VNPAY:"
+                android:textColor="#334155"
+                android:textSize="12.5sp"
+                android:textStyle="bold" />
+
+            <!-- LƯỚI NGÂN HÀNG TEST VNPAY SANDBOX (NCB KHUYÊN DÙNG) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <!-- NCB (Ngân hàng test chuẩn VNPAY) -->
+                <LinearLayout
+                    android:id="@+id/btnBankNcb"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="#EBF5FF"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:text="NCB"
+                        android:textColor="#005BAA"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="[Test Sandbox]"
+                        android:textColor="#ED1C24"
+                        android:textSize="9.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Vietcombank -->
+                <LinearLayout
+                    android:id="@+id/btnBankVcb"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="#F8FAFC"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:text="VCB"
+                        android:textColor="#334155"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Vietcombank"
+                        android:textColor="#64748B"
+                        android:textSize="9.5sp" />
+                </LinearLayout>
+
+                <!-- VietinBank -->
+                <LinearLayout
+                    android:id="@+id/btnBankCtg"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="#F8FAFC"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:text="CTG"
+                        android:textColor="#334155"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="VietinBank"
+                        android:textColor="#64748B"
+                        android:textSize="9.5sp" />
+                </LinearLayout>
+
+                <!-- BIDV -->
+                <LinearLayout
+                    android:id="@+id/btnBankBidv"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="#F8FAFC"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:text="BIDV"
+                        android:textColor="#334155"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="BIDV Bank"
+                        android:textColor="#64748B"
+                        android:textSize="9.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- HỘP THÔNG TIN THẺ TEST CHUẨN VNPAY SANDBOX (NCB) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_rounded_card"
+                android:backgroundTint="#EFF6FF"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Thông tin thẻ test VNPAY Sandbox chính thức (NCB):"
+                    android:textColor="#1E40AF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="• Số thẻ: 9704198526191432198\n• Tên chủ thẻ: NGUYEN VAN A\n• Ngày phát hành: 07/15 | OTP: 123456"
+                    android:textColor="#1E293B"
+                    android:textSize="11.5sp"
+                    android:lineSpacingExtra="2dp" />
+
+                <!-- NÚT ĐIỀN NHANH DỮ LIỆU TEST VNPAY -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnQuickFillNcb"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="#DBEAFE"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:stateListAnimator="@null"
+                    android:text="⚡ Tự động điền thẻ test VNPAY Sandbox"
+                    android:textColor="#005BAA"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- CÁC Ô NHẬP LIỆU THẺ ATM -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Số thẻ ATM"
+                android:textColor="#475569"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etAtmCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_input_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="9704 1985 2619 1432 198"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#1E293B"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Tên chủ thẻ (In trên thẻ)"
+                android:textColor="#475569"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etAtmCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_input_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="NGUYEN VAN A"
+                android:importantForAutofill="no"
+                android:inputType="textCapCharacters"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#1E293B"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Ngày phát hành (Tháng/Năm)"
+                android:textColor="#475569"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etAtmIssueDate"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_input_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="07/15"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#1E293B"
+                android:textSize="13.5sp" />
+
+            <!-- NÚT TIẾP TỤC VNPAY -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAtmContinue"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_rounded_card"
+                android:backgroundTint="#005BAA"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:stateListAnimator="@null"
+                android:text="TIẾP TỤC"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- ======================= KHỐI 2: THẺ QUỐC TẾ VISA/MASTER ======================= -->
+        <LinearLayout
+            android:id="@+id/layoutVisaSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:backgroundTint="#F8FAFC"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Cổng thanh toán quốc tế VNPAY (Visa, Master, JCB)"
+                    android:textColor="#005BAA"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Thẻ test Sandbox: 4111 1111 1111 1111 | NGUYEN VAN A | 12/28 | CVV: 123"
+                    android:textColor="#64748B"
+                    android:textSize="11.5sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnQuickFillVisa"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="#E2E8F0"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:stateListAnimator="@null"
+                    android:text="⚡ Điền nhanh thẻ Visa test"
+                    android:textColor="#334155"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Số thẻ quốc tế"
+                android:textColor="#475569"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etVisaCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_input_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="4111 1111 1111 1111"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#1E293B"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Tên chủ thẻ"
+                android:textColor="#475569"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etVisaCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_input_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="NGUYEN VAN A"
+                android:importantForAutofill="no"
+                android:inputType="textCapCharacters"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#1E293B"
+                android:textSize="13.5sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="Hết hạn (MM/YY)"
+                        android:textColor="#475569"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/etVisaExpiry"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_input_box"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:hint="12/28"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textColor="#1E293B"
+                        android:textSize="13.5sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:text="CVV / CVC"
+                        android:textColor="#475569"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/etVisaCvv"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_input_box"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:hint="123"
+                        android:importantForAutofill="no"
+                        android:inputType="numberPassword"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textColor="#1E293B"
+                        android:textSize="13.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnVisaContinue"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_rounded_card"
+                android:backgroundTint="#005BAA"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:stateListAnimator="@null"
+                android:text="TIẾP TỤC"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- ======================= KHỐI 3: XÁC THỰC OTP CHUẨN VNPAY ======================= -->
+        <LinearLayout
+            android:id="@+id/layoutOtpSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:backgroundTint="#F0FDF4"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:text="XÁC THỰC GIAO DỊCH VNPAY (OTP)"
+                    android:textColor="#166534"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvOtpDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Mã xác thực OTP đã được gửi đến số điện thoại 098****123 của chủ tài khoản NCB. Vui lòng nhập mã để hoàn tất thanh toán."
+                    android:textColor="#1F2937"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Mã OTP test VNPAY Sandbox: 123456"
+                    android:textColor="#005BAA"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Nhập mã OTP (6 chữ số)"
+                android:textColor="#334155"
+                android:textSize="12.5sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etOtpCode"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input_box"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:gravity="center"
+                    android:hint="123456"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:letterSpacing="0.2"
+                    android:maxLength="6"
+                    android:textColor="#005BAA"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnQuickFillOtp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="#EFF6FF"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:stateListAnimator="@null"
+                    android:text="Điền 123456"
+                    android:textColor="#005BAA"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- NÚT XÁC NHẬN VNPAY -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnConfirmOtp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_rounded_card"
+                android:backgroundTint="#005BAA"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:stateListAnimator="@null"
+                android:text="XÁC NHẬN THANH TOÁN VNPAY"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- NÚT HỦY GIAO DỊCH -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCancelGateway"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sf_pro_display"
+                android:stateListAnimator="@null"
+                android:text="Hủy giao dịch"
+                android:textColor="#94A3B8"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- ======================= KHỐI 4: LOADING XỬ LÝ VNPAY ======================= -->
+        <LinearLayout
+            android:id="@+id/layoutGatewayLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminateTint="#005BAA" />
+
+            <TextView
+                android:id="@+id/tvGatewayLoadingMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="Đang kết nối cổng thanh toán VNPAY Sandbox..."
+                android:textColor="#334155"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- FOOTER BẢN QUYỀN VNPAY -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:gravity="center"
+            android:text="Cổng thanh toán điện tử VNPAY (Sandbox)\nChứng chỉ bảo mật quốc tế PCI DSS Level 1 &amp; SSL 256-bit"
+            android:textColor="#94A3B8"
+            android:textSize="11sp"
+            android:lineSpacingExtra="2dp" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

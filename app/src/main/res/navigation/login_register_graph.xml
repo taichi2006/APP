@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.feature.auth.LoginFragment"
+        android:name="com.example.feature.auth.ui.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.feature.auth.RegisterFragment"
+        android:name="com.example.feature.auth.ui.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/introductionFragment"
-        android:name="com.example.feature.auth.IntroductionFragment"
+        android:name="com.example.feature.auth.ui.IntroductionFragment"
         android:label="IntroductionFragment"
         tools:layout="@layout/fragment_introduction">
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountOptionsFragment"
-        android:name="com.example.feature.auth.AccountOptionsFragment"
+        android:name="com.example.feature.auth.ui.AccountOptionsFragment"
         android:label="AccountOptionsFragment"
         tools:layout="@layout/fragment_account_options">
         <action
