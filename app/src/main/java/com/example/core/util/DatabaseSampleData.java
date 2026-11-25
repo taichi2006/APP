@@ -10,6 +10,7 @@ import com.example.model.Voucher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class DatabaseSampleData {
@@ -26,70 +27,70 @@ public class DatabaseSampleData {
         Product p1 = new Product("sofa_01", "Sofa Băng Nỉ Hiện Đại", "Sofa", "models/sofa_living.glb", 4500000f, 0.15f,
                 "Sofa băng 3 chỗ bọc vải nỉ cao cấp dệt sợi Bỉ thoáng khí kháng khuẩn, đệm mút D40 bọt biển đúc nguyên khối.",
                 Arrays.asList(darkGray, navyBlue, beige), Arrays.asList("1m8", "2m", "2m2"),
-                Arrays.asList("file:///android_asset/product_images/sofa_living.png", "file:///android_asset/product_images/sofa_glam.png"));
+                Collections.singletonList("file:///android_asset/product_images/sofa_living.png"));
         p1.setSoldCount(142); p1.setRating(4.9f); p1.setReviewCount(36);
         list.add(p1);
 
         Product p2 = new Product("sofa_02", "Sofa Nhung Glam Velvet", "Sofa", "models/sofa_glam.glb", 11500000f, null,
                 "Sofa bọc nhung Glam Velvet thượng lưu mềm mại như tơ tằm, đệm ngồi 3 lớp lông vũ kết hợp mút cao cấp.",
                 Arrays.asList(woodBrown, darkGray), Arrays.asList("2m6 x 1m6", "2m8 x 1m8"),
-                Arrays.asList("file:///android_asset/product_images/sofa_glam.png", "file:///android_asset/product_images/sofa_living.png"));
+                Collections.singletonList("file:///android_asset/product_images/sofa_glam.png"));
         p2.setSoldCount(89); p2.setRating(5.0f); p2.setReviewCount(24);
         list.add(p2);
 
         Product p3 = new Product("chair_01", "Ghế Bành Thư Giãn Armchair", "Chair", "models/chair_armchair.glb", 2800000f, 0.1f,
                 "Ghế bành thư giãn Armchair chế tác công thái học hoàn hảo với góc ngả 105 độ nâng đỡ trọn vẹn cột sống.",
                 Arrays.asList(oliveGreen, beige, navyBlue), Arrays.asList("Tiêu chuẩn"),
-                Arrays.asList("file:///android_asset/product_images/chair_armchair.png", "file:///android_asset/product_images/chair_sheen.png"));
+                Collections.singletonList("file:///android_asset/product_images/chair_armchair.png"));
         p3.setSoldCount(210); p3.setRating(4.8f); p3.setReviewCount(48);
         list.add(p3);
 
         Product p4 = new Product("chair_02", "Ghế Bọc Nỉ Bắc Âu Sheen Chair", "Chair", "models/chair_sheen.glb", 3200000f, null,
                 "Ghế đơn phong cách Bắc Âu Scandinavian bọc nỉ Sheen Cashmere mịn màng, phối viền chỉ khâu thủ công.",
                 Arrays.asList(woodBrown, beige), Arrays.asList("Tiêu chuẩn"),
-                Arrays.asList("file:///android_asset/product_images/chair_sheen.png", "file:///android_asset/product_images/chair_armchair.png"));
+                Collections.singletonList("file:///android_asset/product_images/chair_sheen.png"));
         p4.setSoldCount(115); p4.setRating(4.9f); p4.setReviewCount(29);
         list.add(p4);
 
         Product p5 = new Product("table_01", "Bàn Ăn Gỗ Tự Nhiên Dining Table", "Table", "models/table_dining.glb", 5600000f, 0.2f,
                 "Bàn ăn gia đình Dining Table từ 100% gỗ óc chó Bắc Mỹ tự nhiên với những đường vân cuộn xoáy quyến rũ.",
                 Arrays.asList(woodBrown, darkGray), Arrays.asList("1m4 x 80cm", "1m6 x 90cm"),
-                Arrays.asList("file:///android_asset/product_images/table_dining.png", "file:///android_asset/product_images/table_coffee.png"));
+                Collections.singletonList("file:///android_asset/product_images/table_dining.png"));
         p5.setSoldCount(178); p5.setRating(4.9f); p5.setReviewCount(42);
         list.add(p5);
 
         Product p6 = new Product("table_02", "Bàn Trà Sofa Coffee Table", "Table", "models/table_coffee.glb", 1950000f, null,
                 "Bàn trà Coffee Table thiết kế thanh lịch. Mặt đá nung kết vân mây cẩm thạch chống trầy xước và ố vàng.",
                 Arrays.asList(woodBrown, darkGray), Arrays.asList("Đường kính 60cm", "Đường kính 80cm"),
-                Arrays.asList("file:///android_asset/product_images/table_coffee.png", "file:///android_asset/product_images/table_dining.png"));
+                Collections.singletonList("file:///android_asset/product_images/table_coffee.png"));
         p6.setSoldCount(92); p6.setRating(4.7f); p6.setReviewCount(19);
         list.add(p6);
 
         Product p7 = new Product("bed_01", "Giường Ngủ Đôi Cao Cấp Luxury Bed", "Bed", "models/bed_luxury.glb", 9800000f, 0.1f,
                 "Giường ngủ đôi hoàng gia Luxury Bed chế tác từ gỗ sồi tự nhiên nguyên tấm vững chãi chịu tải trên 500kg.",
                 Arrays.asList(beige, woodBrown), Arrays.asList("1m6 x 2m", "1m8 x 2m"),
-                Arrays.asList("file:///android_asset/product_images/bed_luxury.png", "file:///android_asset/product_images/bed_day.png"));
+                Collections.singletonList("file:///android_asset/product_images/bed_luxury.png"));
         p7.setSoldCount(164); p7.setRating(5.0f); p7.setReviewCount(52);
         list.add(p7);
 
         Product p8 = new Product("bed_02", "Giường Ngủ Thư Giãn Daybed", "Bed", "models/bed_day.glb", 6500000f, null,
                 "Giường đơn thư giãn Daybed phong cách Quiet Luxury tối giản, tích hợp đệm bọc vải lanh Linen thoáng mát.",
                 Arrays.asList(woodBrown), Arrays.asList("1m2 x 2m", "1m4 x 2m"),
-                Arrays.asList("file:///android_asset/product_images/bed_day.png", "file:///android_asset/product_images/bed_luxury.png"));
+                Collections.singletonList("file:///android_asset/product_images/bed_day.png"));
         p8.setSoldCount(76); p8.setRating(4.8f); p8.setReviewCount(18);
         list.add(p8);
 
         Product p9 = new Product("cupboard_01", "Tủ Gỗ Vintage Cổ Điển", "Cupboard", "models/cabinet_vintage.glb", 5800000f, 0.12f,
                 "Tủ lưu trữ gỗ Vintage phong cách Mid-Century cổ điển với 6 ngăn kéo trượt êm ái trang bị ray giảm chấn.",
                 Arrays.asList(woodBrown, darkGray), Arrays.asList("1m2 x 90cm", "1m5 x 90cm"),
-                Arrays.asList("file:///android_asset/product_images/cabinet_vintage.png", "file:///android_asset/product_images/cupboard_shelves.png"));
+                Collections.singletonList("file:///android_asset/product_images/cabinet_vintage.png"));
         p9.setSoldCount(130); p9.setRating(4.9f); p9.setReviewCount(31);
         list.add(p9);
 
         Product p10 = new Product("cupboard_02", "Kệ Trưng Bày Đa Tầng Shelves", "Cupboard", "models/cupboard_shelves.glb", 3200000f, null,
                 "Kệ trưng bày đa tầng Shelves thiết kế bất đối xứng hiện đại, tối ưu diện tích trưng bày sách và đồ trang trí.",
                 Arrays.asList(darkGray, woodBrown), Arrays.asList("1m2 x 1m8"),
-                Arrays.asList("file:///android_asset/product_images/cupboard_shelves.png", "file:///android_asset/product_images/cabinet_vintage.png"));
+                Collections.singletonList("file:///android_asset/product_images/cupboard_shelves.png"));
         p10.setSoldCount(84); p10.setRating(4.8f); p10.setReviewCount(22);
         list.add(p10);
 

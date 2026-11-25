@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -102,8 +103,13 @@ public class ProductDetailsFragment extends Fragment {
         }
 
         if (product.getImages() != null && !product.getImages().isEmpty()) {
-            viewPagerAdapter.differ.submitList(product.getImages());
+            List<String> images = product.getImages();
+            if (images.size() > 1 && images.get(0) != null && images.get(0).contains("product_images/")) {
+                images = Collections.singletonList(images.get(0));
+            }
+            viewPagerAdapter.differ.submitList(images);
         }
+        viewPagerAdapter.setSelectedColor(selectedColor);
 
         if (product.getColors() != null && !product.getColors().isEmpty()) {
             binding.tvProductColor.setVisibility(View.VISIBLE);
@@ -112,10 +118,7 @@ public class ProductDetailsFragment extends Fragment {
             colorsAdapter.setOnItemClickListener(color -> {
                 selectedColor = color;
                 binding.tvProductColor.setText("Màu sắc: Đã chọn");
-                int idx = product.getColors().indexOf(color);
-                if (idx >= 0 && product.getImages() != null && idx < product.getImages().size()) {
-                    binding.viewPagerProductImage.setCurrentItem(idx, true);
-                }
+                viewPagerAdapter.setSelectedColor(color);
             });
         } else {
             binding.tvProductColor.setVisibility(View.GONE);
