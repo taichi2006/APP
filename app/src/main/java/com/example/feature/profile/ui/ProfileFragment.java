@@ -1,8 +1,13 @@
 package com.example.feature.profile.ui;
 
+import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +31,6 @@ import com.example.core.util.UiUtil;
 import com.example.feature.auth.ui.LoginRegisterActivity;
 import com.example.feature.profile.viewmodel.ProfileViewModel;
 import com.example.model.User;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -66,46 +70,161 @@ public class ProfileFragment extends Fragment {
         binding.btnStatusShipped.setOnClickListener(v -> { SoundHelper.playClickSound(); navigateToOrders("Đang giao"); });
         binding.btnStatusDelivered.setOnClickListener(v -> { SoundHelper.playClickSound(); navigateToOrders("Đã nhận"); });
 
-        binding.linearVoucherWallet.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Ví Voucher ARoom")
-                    .setMessage("Mã: AROOM50 - Giảm 10% tối đa 50k cho đơn từ 200k\nMã: SALE50 - Giảm 50k cho đơn từ 500k")
-                    .setPositiveButton("Đóng", (d, w) -> d.dismiss())
-                    .show();
-        });
+        binding.linearVoucherWallet.setOnClickListener(v -> showVouchersDialog());
 
         binding.linearAddressBook.setOnClickListener(v -> navController.navigate(R.id.action_profileFragment_to_addressFragment));
 
-        binding.linearSupportHotline.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Tổng đài CSKH ARoom")
-                    .setMessage("Hotline hỗ trợ: 1900 6868\nEmail: hotro@aroom.vn\nGiờ làm việc: 8:00 - 21:00 hàng ngày")
-                    .setPositiveButton("Đóng", (d, w) -> d.dismiss())
-                    .show();
-        });
+        binding.linearSupportHotline.setOnClickListener(v -> showSupportHotlineDialog());
 
-        binding.linearWarrantyPolicy.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Chính sách bảo hành")
-                    .setMessage("• Bảo hành 2 năm đối với khung gỗ và kết cấu\n• Đổi mới trong 30 ngày nếu có lỗi từ nhà sản xuất\n• Hỗ trợ vận chuyển lắp đặt tận nhà")
-                    .setPositiveButton("Đóng", (d, w) -> d.dismiss())
-                    .show();
-        });
+        binding.linearWarrantyPolicy.setOnClickListener(v -> showWarrantyPolicyDialog());
 
-        binding.linearLogOut.setOnClickListener(v -> {
-            new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Đăng xuất")
-                    .setMessage("Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?")
-                    .setPositiveButton("Đăng xuất", (d, w) -> {
-                        viewModel.signOut();
-                        Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
-                        startActivity(intent);
-                        requireActivity().finish();
-                        Toast.makeText(requireContext(), "Đã đăng xuất tài khoản", Toast.LENGTH_SHORT).show();
-                    })
-                    .setNegativeButton("Hủy", (d, w) -> d.dismiss())
-                    .show();
-        });
+        binding.linearLogOut.setOnClickListener(v -> showLogoutConfirmationDialog());
+    }
+
+    private void showVouchersDialog() {
+        SoundHelper.playClickSound();
+        Dialog dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.dialog_vouchers);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+            dialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        View item10 = dialog.findViewById(R.id.item_voucher_10);
+        View item20 = dialog.findViewById(R.id.item_voucher_20);
+        View item100k = dialog.findViewById(R.id.item_voucher_100k);
+        View btnClose = dialog.findViewById(R.id.btn_voucher_close);
+
+        if (item10 != null) {
+            item10.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                copyToClipboard("TCFURNISH10");
+                Toast.makeText(requireContext(), "Đã sao chép mã TCFURNISH10", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            });
+        }
+        if (item20 != null) {
+            item20.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                copyToClipboard("VIP20");
+                Toast.makeText(requireContext(), "Đã sao chép mã VIP20", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            });
+        }
+        if (item100k != null) {
+            item100k.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                copyToClipboard("NOITHAT100K");
+                Toast.makeText(requireContext(), "Đã sao chép mã NOITHAT100K", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            });
+        }
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                dialog.dismiss();
+            });
+        }
+
+        dialog.show();
+    }
+
+    private void copyToClipboard(String text) {
+        ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(ClipData.newPlainText("Voucher Code", text));
+        }
+    }
+
+    private void showSupportHotlineDialog() {
+        SoundHelper.playClickSound();
+        Dialog dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.dialog_support_hotline);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+            dialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        View btnClose = dialog.findViewById(R.id.btn_support_close);
+        View btnCall = dialog.findViewById(R.id.btn_support_call);
+
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                dialog.dismiss();
+            });
+        }
+        if (btnCall != null) {
+            btnCall.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                try {
+                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:19008888"));
+                    startActivity(dialIntent);
+                } catch (Exception e) {
+                    Toast.makeText(requireContext(), "Không thể mở ứng dụng cuộc gọi", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            });
+        }
+
+        dialog.show();
+    }
+
+    private void showWarrantyPolicyDialog() {
+        SoundHelper.playClickSound();
+        Dialog dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.dialog_warranty_policy);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+            dialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        View btnClose = dialog.findViewById(R.id.btn_warranty_close);
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                dialog.dismiss();
+            });
+        }
+
+        dialog.show();
+    }
+
+    private void showLogoutConfirmationDialog() {
+        SoundHelper.playClickSound();
+        Dialog dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.dialog_logout_confirmation);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+            dialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        View btnCancel = dialog.findViewById(R.id.btn_logout_cancel);
+        View btnConfirm = dialog.findViewById(R.id.btn_logout_confirm);
+
+        if (btnCancel != null) {
+            btnCancel.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                dialog.dismiss();
+            });
+        }
+        if (btnConfirm != null) {
+            btnConfirm.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                dialog.dismiss();
+                viewModel.signOut();
+                Intent intent = new Intent(requireActivity(), LoginRegisterActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+                Toast.makeText(requireContext(), "Đã đăng xuất tài khoản", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        dialog.show();
     }
 
     private void observeState() {

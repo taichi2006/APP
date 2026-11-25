@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
+        android:fontFamily="@font/be_vietnam_pro"
         android:hint="Email"
         app:layout_constraintEnd_toEndOf="@id/tv_reset_password_text"
         app:layout_constraintStart_toStartOf="@id/tv_reset_password_text"
@@ -61,6 +62,7 @@
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:background="@drawable/white_background"
+            android:fontFamily="@font/be_vietnam_pro"
             android:text="Hủy"
             android:textAllCaps="false"/>
         <androidx.appcompat.widget.AppCompatButton
@@ -70,6 +72,7 @@
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:background="@drawable/blue_background"
+            android:fontFamily="@font/be_vietnam_pro"
             android:textColor="@color/white"
             android:text="Gửi"
             android:textAllCaps="false"/>

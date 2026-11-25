@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:background="@drawable/white_background"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:paddingStart="6dp"
                     android:paddingTop="2dp"
                     android:paddingEnd="6dp"
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:textColor="@color/brand_text_muted"
                     android:textSize="12sp"
                     tools:text="x2" />
@@ -129,7 +129,7 @@
                 android:id="@+id/tvProductUnitPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_display"
+                android:fontFamily="@font/be_vietnam_pro"
                 android:textColor="@color/brand_text_muted"
                 android:textSize="11sp"
                 tools:text="Đơn giá: 4.005.000 đ" />

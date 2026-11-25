@@ -125,7 +125,7 @@ public class SearchFragment extends Fragment {
         int selectedBg = ContextCompat.getColor(requireContext(), R.color.brand_primary);
         int unselectedBg = Color.parseColor("#FAF3E8");
         int textDark = ContextCompat.getColor(requireContext(), R.color.brand_text_dark);
-        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.sf_pro_display);
+        Typeface font = ResourcesCompat.getFont(requireContext(), R.font.be_vietnam_pro);
 
         for (TextView chip : allChips) {
             if (chip == selectedChip) {

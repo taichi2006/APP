@@ -39,7 +39,7 @@
             android:id="@+id/tv_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display"
+            android:fontFamily="@font/be_vietnam_pro"
             android:maxLines="1"
             android:textColor="#334155"
             android:textSize="12sp"

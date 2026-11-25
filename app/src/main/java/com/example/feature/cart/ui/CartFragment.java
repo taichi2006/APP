@@ -1,5 +1,8 @@
 package com.example.feature.cart.ui;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +10,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -24,7 +26,6 @@ import com.example.core.util.SoundHelper;
 import com.example.core.util.UiUtil;
 import com.example.feature.cart.viewmodel.CartViewModel;
 import com.example.model.CartProduct;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,15 +127,32 @@ public class CartFragment extends Fragment {
     }
 
     private void showDeleteDialog(CartProduct cartProduct) {
-        new MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Xóa sản phẩm")
-                .setMessage("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?")
-                .setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss())
-                .setPositiveButton("Xóa", (dialog, which) -> {
-                    viewModel.deleteCartProduct(cartProduct);
-                    dialog.dismiss();
-                })
-                .show();
+        Dialog dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.dialog_delete_cart_item);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.90);
+            dialog.getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
+        View btnCancel = dialog.findViewById(R.id.btn_dialog_cancel);
+        View btnDelete = dialog.findViewById(R.id.btn_dialog_delete);
+
+        if (btnCancel != null) {
+            btnCancel.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                dialog.dismiss();
+            });
+        }
+        if (btnDelete != null) {
+            btnDelete.setOnClickListener(v -> {
+                SoundHelper.playClickSound();
+                viewModel.deleteCartProduct(cartProduct);
+                dialog.dismiss();
+            });
+        }
+
+        dialog.show();
     }
 
     @Override

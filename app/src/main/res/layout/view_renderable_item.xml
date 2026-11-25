@@ -25,6 +25,7 @@
             android:id="@+id/ar_view_product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/be_vietnam_pro"
             android:padding="8dp"
             android:text="Arm chair with buffets"
             android:textColor="@color/black" />

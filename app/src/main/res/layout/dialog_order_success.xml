@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:fontFamily="@font/sf_pro_display"
+            android:fontFamily="@font/be_vietnam_pro"
             android:gravity="center"
             android:text="Cảm ơn quý khách đã mua sắm tại TCFurnish.\nĐơn hàng đã được lưu và đang chuẩn bị xuất kho."
             android:textColor="#64748B"
@@ -70,7 +70,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:text="Mã đơn hàng:"
                     android:textColor="#64748B"
                     android:textSize="13sp" />
@@ -98,7 +98,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:text="Hình thức:"
                     android:textColor="#64748B"
                     android:textSize="13sp" />
@@ -108,7 +108,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:gravity="end"
                     android:text="Cổng VNPAY (Thẻ NCB)"
                     android:textColor="#1E293B"
@@ -126,7 +126,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:text="Tổng tiền:"
                     android:textColor="#64748B"
                     android:textSize="13sp" />
@@ -154,7 +154,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:text="Giao đến:"
                     android:textColor="#64748B"
                     android:textSize="13sp" />
@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
-                    android:fontFamily="@font/sf_pro_display"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:gravity="end"
                     android:maxLines="2"
                     android:text="123 Nguyễn Huệ, Quận 1, TP.HCM"
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 app:drawableStartCompat="@drawable/ic_truck_delivery"
                 android:drawablePadding="8dp"
-                android:fontFamily="@font/sf_pro_display"
+                android:fontFamily="@font/be_vietnam_pro"
                 android:text="Shop tự vận chuyển &amp; hỗ trợ lắp đặt tận nơi miễn phí."
                 android:textColor="#15803D"
                 android:textSize="12sp"
@@ -215,7 +215,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_rounded_card"
             android:backgroundTint="#F1F5F9"
-            android:fontFamily="@font/sf_pro_display"
+            android:fontFamily="@font/be_vietnam_pro"
             android:stateListAnimator="@null"
             android:text="Tiếp tục mua sắm"
             android:textColor="#334155"

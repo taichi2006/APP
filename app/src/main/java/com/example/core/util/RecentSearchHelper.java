@@ -91,7 +91,7 @@ public class RecentSearchHelper {
             chip.setGravity(Gravity.CENTER);
             chip.setPadding(paddingStartEndPx, 0, paddingStartEndPx, 0);
             chip.setText(query);
-            chip.setTypeface(ResourcesCompat.getFont(context, R.font.sf_pro_display));
+            chip.setTypeface(ResourcesCompat.getFont(context, R.font.be_vietnam_pro));
             chip.setTextColor(ContextCompat.getColor(context, R.color.brand_text_dark));
             chip.setTextSize(12f);
             chip.setClickable(true);
