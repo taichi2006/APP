@@ -9,11 +9,16 @@ import com.example.model.Payment;
 import com.example.model.Product;
 import com.example.model.Review;
 import com.example.model.Voucher;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -32,35 +37,68 @@ public class DatabaseSeeder {
     }
 
     public static void seedAll(OnSeedCompleteListener onComplete) {
-        seedAllData(onComplete);
+        cleanAndSeed(onComplete);
     }
 
     public static void seedAllData(OnSeedCompleteListener onComplete) {
+        cleanAndSeed(onComplete);
+    }
+
+    public static void cleanAndSeed(OnSeedCompleteListener onComplete) {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         String currentUid = FirebaseAuth.getInstance().getUid();
 
+        // 1. Lấy danh sách tài liệu cần xóa từ các collection rác (reviews, orders, order_details, payments)
+        List<Task<QuerySnapshot>> tasks = new ArrayList<>();
+        tasks.add(firestore.collection("reviews").get());
+        tasks.add(firestore.collection("orders").get());
+        tasks.add(firestore.collection("order_details").get());
+        tasks.add(firestore.collection("payments").get());
+        if (currentUid != null && !currentUid.isEmpty()) {
+            tasks.add(firestore.collection("user").document(currentUid).collection("orders").get());
+        }
+
+        Tasks.whenAllSuccess(tasks).addOnSuccessListener(results -> {
+            WriteBatch deleteBatch = firestore.batch();
+            for (Object obj : results) {
+                if (obj instanceof QuerySnapshot) {
+                    for (DocumentSnapshot doc : ((QuerySnapshot) obj).getDocuments()) {
+                        deleteBatch.delete(doc.getReference());
+                    }
+                }
+            }
+            deleteBatch.commit().addOnCompleteListener(deleteTask -> {
+                Log.d(TAG, "Đã xóa sạch các collection cũ! Tiến hành seed dữ liệu chuẩn mới...");
+                executeSeedCleanData(firestore, currentUid, onComplete);
+            });
+        }).addOnFailureListener(e -> {
+            // Nếu xóa thất bại (ví dụ collection chưa tồn tại), vẫn seed bình thường
+            executeSeedCleanData(firestore, currentUid, onComplete);
+        });
+    }
+
+    private static void executeSeedCleanData(FirebaseFirestore firestore, String currentUid, OnSeedCompleteListener onComplete) {
         WriteBatch batch = firestore.batch();
 
-        // 1. Seed Products (10 items: PRD001 -> PRD010)
+        // 1. Products (10 món nội thất)
         List<Product> products = DatabaseSampleData.getSampleProducts();
         for (Product product : products) {
             batch.set(firestore.collection("Products").document(product.getId()), product);
         }
 
-        // 2. Seed Vouchers (4 items)
+        // 2. Vouchers (4 mã giảm giá)
         List<Voucher> vouchers = DatabaseSampleData.getSampleVouchers();
         for (Voucher voucher : vouchers) {
             batch.set(firestore.collection("vouchers").document(voucher.getCode()), voucher);
         }
 
-        // 3. Seed Sample Orders, Order Details, Payments
+        // 3. 3 Đơn hàng mẫu cho tài khoản demo (ORD001 - Đã nhận, ORD002 - Đang giao, ORD003 - Đã đặt)
         List<Order> orders = DatabaseSampleData.getSampleOrders();
         int dtlIdx = 1;
         for (Order order : orders) {
             String oCode = order.getOrderCode();
             batch.set(firestore.collection("orders").document(oCode), order);
 
-            // Gán trực tiếp vào tài khoản đang đăng nhập (account Google)
             if (currentUid != null && !currentUid.isEmpty()) {
                 batch.set(firestore.collection("user").document(currentUid).collection("orders").document(oCode), order);
             }
@@ -88,13 +126,14 @@ public class DatabaseSeeder {
             }
         }
 
-        // Gán địa chỉ mẫu vào tài khoản đang đăng nhập
+        // Địa chỉ mẫu cho user
         if (currentUid != null && !currentUid.isEmpty()) {
             Address defaultAddr = new Address("Nhà riêng", "Chí Tài", "12 Nguyễn Huệ, P. Bến Nghé", "0901234567", "Quận 1", "TP. Hồ Chí Minh");
             defaultAddr.setId("ADR001");
             batch.set(firestore.collection("user").document(currentUid).collection("address").document("ADR001"), defaultAddr);
         }
 
+        // Thanh toán mẫu (PAY001, PAY002, PAY003)
         List<Payment> payments = DatabaseSampleData.getSamplePayments();
         for (Payment payment : payments) {
             batch.set(firestore.collection("payments").document(payment.getPaymentId()), payment);
@@ -102,20 +141,20 @@ public class DatabaseSeeder {
 
         // Commit batch 1
         batch.commit().addOnSuccessListener(aVoid -> {
-            // 4. Seed Reviews in batch 2 (30 items: REV001 -> REV030)
+            // 4. Seed Reviews chuẩn (30 đánh giá: REV001 -> REV030)
             WriteBatch reviewBatch = firestore.batch();
             List<Review> reviews = DatabaseSampleData.getSampleReviews();
             for (Review review : reviews) {
                 reviewBatch.set(firestore.collection("reviews").document(review.getId()), review);
             }
             reviewBatch.commit().addOnSuccessListener(v -> {
-                Log.d(TAG, "Seeded clean collections to Firestore successfully!");
-                if (onComplete != null) onComplete.onComplete(true, "Seeded all clean collections successfully");
+                Log.d(TAG, "Đã dọn sạch database và seed lại data chuẩn thành công!");
+                if (onComplete != null) onComplete.onComplete(true, "Dọn dẹp và nạp dữ liệu sạch thành công!");
             }).addOnFailureListener(e -> {
-                if (onComplete != null) onComplete.onComplete(true, "Seeded base collections");
+                if (onComplete != null) onComplete.onComplete(true, "Đã nạp phần lớn dữ liệu");
             });
         }).addOnFailureListener(e -> {
-            Log.e(TAG, "Error seeding Firestore data: " + e.getMessage());
+            Log.e(TAG, "Lỗi khi nạp dữ liệu: " + e.getMessage());
             if (onComplete != null) onComplete.onComplete(false, e.getMessage());
         });
     }
