@@ -22,6 +22,7 @@ public class OrdersViewModel extends ViewModel {
     // ==========================================
     private final OrderRepository orderRepository;
     private final MutableLiveData<Resource<List<Order>>> ordersLiveData = new MutableLiveData<>();
+    private com.google.firebase.firestore.ListenerRegistration ordersListener;
 
     @Inject
     public OrdersViewModel(OrderRepository orderRepository) {
@@ -29,20 +30,17 @@ public class OrdersViewModel extends ViewModel {
         getAllOrders();
     }
 
-    // ==========================================
-    // 2. Getters LiveData cho UI
-    // ==========================================
     public LiveData<Resource<List<Order>>> getOrdersLiveData() {
         return ordersLiveData;
     }
 
-    // ==========================================
-    // 3. Nghiệp vụ Quản lý Đơn hàng
-    // ==========================================
     public void getAllOrders() {
+        if (ordersListener != null) {
+            ordersListener.remove();
+        }
         ordersLiveData.setValue(new Resource.Loading<>());
 
-        orderRepository.getAllOrders(new OrderRepository.Callback<List<Order>>() {
+        ordersListener = orderRepository.listenAllOrders(new OrderRepository.Callback<List<Order>>() {
             @Override
             public void onSuccess(List<Order> result) {
                 ordersLiveData.setValue(new Resource.Success<>(result));
@@ -53,6 +51,15 @@ public class OrdersViewModel extends ViewModel {
                 ordersLiveData.setValue(new Resource.Error<>(message != null ? message : "Lỗi tải đơn hàng"));
             }
         });
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        if (ordersListener != null) {
+            ordersListener.remove();
+            ordersListener = null;
+        }
     }
 
     public interface DeleteAllOrdersCallback {

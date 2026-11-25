@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class DatabaseSampleData {
 
@@ -100,12 +101,13 @@ public class DatabaseSampleData {
     public static List<Review> getSampleReviews() {
         List<Review> list = new ArrayList<>();
         String[] pIds = {"sofa_01", "sofa_02", "chair_01", "chair_02", "table_01", "table_02", "bed_01", "bed_02", "cupboard_01", "cupboard_02"};
+        int revIdx = 1;
         for (String pid : pIds) {
-            list.add(new Review("rev_" + pid + "_1", pid, "1001", "Trần Thu Trang", "trang@gmail.com", 5.0f,
+            list.add(new Review(String.format(Locale.US, "REV%03d", revIdx++), pid, "ORD001", "Trần Thu Trang", "trang@gmail.com", 5.0f,
                     "Sản phẩm thực tế đẹp vượt mong đợi! Chất gỗ và đường chỉ may rất tỉ mỉ, nhìn vô cùng sang trọng.", "18/11/2026"));
-            list.add(new Review("rev_" + pid + "_2", pid, "1002", "Nguyễn Minh Đức", "duc@gmail.com", 5.0f,
+            list.add(new Review(String.format(Locale.US, "REV%03d", revIdx++), pid, "ORD001", "Nguyễn Minh Đức", "duc@gmail.com", 5.0f,
                     "Giao hàng đúng hẹn, đóng gói cẩn thận. Nhân viên hỗ trợ bê lên tầng và lắp đặt chu đáo.", "15/11/2026"));
-            list.add(new Review("rev_" + pid + "_3", pid, "1003", "Phạm Quốc Bảo", "bao@gmail.com", 4.8f,
+            list.add(new Review(String.format(Locale.US, "REV%03d", revIdx++), pid, "ORD001", "Phạm Quốc Bảo", "bao@gmail.com", 4.8f,
                     "Rất ưng ý với chất lượng hoàn thiện của TCFurnish. Xứng đáng với giá trị bỏ ra!", "10/11/2026"));
         }
         return list;
@@ -125,20 +127,24 @@ public class DatabaseSampleData {
         List<Product> products = getSampleProducts();
 
         Address addr1 = new Address("Nhà riêng", "Nguyễn Văn An", "12 Nguyễn Huệ, P. Bến Nghé", "0901234567", "Quận 1", "TP. Hồ Chí Minh");
+        addr1.setId("ADR001");
         List<CartProduct> cp1 = new ArrayList<>();
         if (!products.isEmpty()) {
             cp1.add(new CartProduct(products.get(0), 1, 0xFF1B2A4A, "2m"));
         }
-        Order o1 = new Order("Đã giao hàng", 4500000f, cp1, addr1, "20/11/2026 14:30", 10001L, "Cổng Sandbox VNPAY (Trực tuyến)", "Đã thanh toán (Mã GD: VNPAY_982341)");
+        Order o1 = new Order("Đã giao hàng", 4500000f, cp1, addr1, "20/11/2026 14:30", 1L, "Cổng Sandbox VNPAY (Trực tuyến)", "Đã thanh toán (Mã GD: VNPAY_982341)");
+        o1.setOrderCode("ORD001");
         o1.setNote("Giao giờ hành chính");
         list.add(o1);
 
         Address addr2 = new Address("Công ty", "Trần Thị Mai", "88 Lê Lợi, P. Bến Thành", "0912345678", "Quận 1", "TP. Hồ Chí Minh");
+        addr2.setId("ADR002");
         List<CartProduct> cp2 = new ArrayList<>();
         if (products.size() > 4) {
             cp2.add(new CartProduct(products.get(4), 1, 0xFF8B5A2B, "1m6 x 90cm"));
         }
-        Order o2 = new Order("Đang giao hàng", 5600000f, cp2, addr2, "23/11/2026 09:15", 10002L, "Thanh toán khi nhận hàng (COD)", "Chờ thu tiền");
+        Order o2 = new Order("Đang giao hàng", 5600000f, cp2, addr2, "23/11/2026 09:15", 2L, "Thanh toán khi nhận hàng (COD)", "Chờ thu tiền");
+        o2.setOrderCode("ORD002");
         o2.setNote("Gọi trước khi giao 15 phút");
         list.add(o2);
 
@@ -147,10 +153,10 @@ public class DatabaseSampleData {
 
     public static List<Payment> getSamplePayments() {
         List<Payment> list = new ArrayList<>();
-        list.add(new Payment("PAY_10001", 10001L, "USR_DEMO_01", "an.nguyen@gmail.com", 4500000.0,
-                "Sandbox (VNPAY)", "SUCCESS", "TXN_982341", "NCB", "Thanh toán đơn hàng #10001"));
-        list.add(new Payment("PAY_10002", 10002L, "USR_DEMO_02", "mai.tran@gmail.com", 5600000.0,
-                "COD", "PENDING", "COD_10002", "CASH", "Thanh toán khi nhận hàng #10002"));
+        list.add(new Payment("PAY001", 1L, "USR001", "an.nguyen@gmail.com", 4500000.0,
+                "Sandbox (VNPAY)", "SUCCESS", "TXN_982341", "NCB", "Thanh toán đơn hàng ORD001"));
+        list.add(new Payment("PAY002", 2L, "USR002", "mai.tran@gmail.com", 5600000.0,
+                "COD", "PENDING", "COD_002", "CASH", "Thanh toán khi nhận hàng ORD002"));
         return list;
     }
 }

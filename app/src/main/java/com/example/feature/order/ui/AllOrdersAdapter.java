@@ -5,6 +5,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.AsyncListDiffer;
@@ -45,7 +46,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.Orde
         public void bind(Order order) {
             if (order == null) return;
 
-            binding.tvOrderId.setText("#" + order.getOrderId());
+            binding.tvOrderId.setText("#" + order.getOrderCode());
             binding.tvOrderDate.setText(order.getDate());
             binding.tvOrderTotalPrice.setText(PriceCalculator.formatPriceVnd(order.getTotalPrice()));
 
@@ -98,13 +99,21 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.Orde
             if (isReceived) {
                 if (order.isReviewed()) {
                     binding.btnRateOrderItem.setText("Đã đánh giá");
+                    binding.btnRateOrderItem.setEnabled(false);
                     binding.btnRateOrderItem.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#64748B")));
                 } else {
                     binding.btnRateOrderItem.setText("Đánh giá");
+                    binding.btnRateOrderItem.setEnabled(true);
                     binding.btnRateOrderItem.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#B88A44")));
                 }
             }
-            binding.btnRateOrderItem.setOnClickListener(v -> { if (onRateClick != null) onRateClick.onOrderClick(order); });
+            binding.btnRateOrderItem.setOnClickListener(v -> {
+                if (order.isReviewed()) {
+                    Toast.makeText(v.getContext(), "Đơn hàng này đã được đánh giá rồi!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (onRateClick != null) onRateClick.onOrderClick(order);
+            });
 
             binding.cardOrder.setOnClickListener(v -> { if (onClick != null) onClick.onOrderClick(order); });
             binding.btnViewOrderDetail.setOnClickListener(v -> { if (onClick != null) onClick.onOrderClick(order); });

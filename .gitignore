@@ -13,3 +13,13 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Environment configuration secrets
+.env
+.idea/
+app/.idea/
+*.log
+*.patch
+*.png
+!app/src/main/res/drawable*/*.png
+!app/src/main/assets/**/*.png

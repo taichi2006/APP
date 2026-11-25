@@ -101,7 +101,6 @@ public class RegisterFragment extends Fragment {
                 googleSignInClient.signOut().addOnCompleteListener(task -> googleSignInLauncher.launch(googleSignInClient.getSignInIntent()));
             }
         });
-        binding.facebookRegister.setOnClickListener(v -> Toast.makeText(requireContext(), "Vui lòng sử dụng Google hoặc Email!", Toast.LENGTH_SHORT).show());
     }
 
     private void observeState() {

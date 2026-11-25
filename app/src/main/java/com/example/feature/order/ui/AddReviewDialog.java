@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.aroom.databinding.DialogAddReviewBinding;
 import com.example.core.util.SoundHelper;
@@ -19,6 +20,10 @@ public class AddReviewDialog {
 
     public static void show(Context context, Order order, OnReviewSubmitListener listener) {
         if (context == null) return;
+        if (order != null && order.isReviewed()) {
+            Toast.makeText(context, "Đơn hàng này đã được đánh giá rồi!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         SoundHelper.playClickSound();
         Dialog dialog = new Dialog(context);
@@ -32,8 +37,8 @@ public class AddReviewDialog {
         }
 
         if (order != null) {
-            binding.tvDialogTitle.setText("Đánh giá đơn hàng #" + order.getOrderId());
-            binding.tvDialogOrderInfo.setText("Đơn hàng #" + order.getOrderId() + " • Đã nhận hàng thành công");
+            binding.tvDialogTitle.setText("Đánh giá đơn hàng #" + order.getOrderCode());
+            binding.tvDialogOrderInfo.setText("Đơn hàng #" + order.getOrderCode() + " • Đã nhận hàng thành công");
         }
 
         binding.ratingBarInput.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {

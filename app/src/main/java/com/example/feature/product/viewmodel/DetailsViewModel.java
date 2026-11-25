@@ -7,7 +7,10 @@ import androidx.lifecycle.ViewModel;
 import com.example.core.util.Resource;
 import com.example.feature.product.repository.ProductRepository;
 import com.example.model.CartProduct;
+import com.example.model.Review;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,6 +26,7 @@ public class DetailsViewModel extends ViewModel {
     private final FirebaseAuth auth;
 
     private final MutableLiveData<Resource<CartProduct>> addToCartLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Resource<List<Review>>> reviewsLiveData = new MutableLiveData<>();
 
     @Inject
     public DetailsViewModel(ProductRepository productRepository, FirebaseAuth auth) {
@@ -35,6 +39,10 @@ public class DetailsViewModel extends ViewModel {
     // ==========================================
     public LiveData<Resource<CartProduct>> getAddToCartLiveData() {
         return addToCartLiveData;
+    }
+
+    public LiveData<Resource<List<Review>>> getReviewsLiveData() {
+        return reviewsLiveData;
     }
 
     // ==========================================
@@ -58,6 +66,26 @@ public class DetailsViewModel extends ViewModel {
             @Override
             public void onError(String message) {
                 addToCartLiveData.setValue(new Resource.Error<>(message != null ? message : "Lỗi thêm giỏ hàng"));
+            }
+        });
+    }
+
+    public void loadReviews(String productId) {
+        if (productId == null || productId.trim().isEmpty()) {
+            reviewsLiveData.setValue(new Resource.Error<>("Mã sản phẩm không hợp lệ"));
+            return;
+        }
+
+        reviewsLiveData.setValue(new Resource.Loading<>());
+        productRepository.getReviewsForProduct(productId, new ProductRepository.Callback<List<Review>>() {
+            @Override
+            public void onSuccess(List<Review> result) {
+                reviewsLiveData.setValue(new Resource.Success<>(result));
+            }
+
+            @Override
+            public void onError(String message) {
+                reviewsLiveData.setValue(new Resource.Error<>(message != null ? message : "Lỗi tải đánh giá"));
             }
         });
     }

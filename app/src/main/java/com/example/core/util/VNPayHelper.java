@@ -21,10 +21,10 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class VNPayHelper {
 
-    public static final String DEFAULT_TMN_CODE = "YB3TI7G3";
-    public static final String DEFAULT_HASH_SECRET = "TCJWCJVZLOQWTHSTCQNPSXWWFOLYSASF";
-    public static final String VNP_URL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static final String VNP_RETURN_URL = "https://sandbox.vnpayment.vn/merchantv2/";
+    public static final String DEFAULT_TMN_CODE = AppConfig.VNP_TMN_CODE;
+    public static final String DEFAULT_HASH_SECRET = AppConfig.VNP_HASH_SECRET;
+    public static final String VNP_URL = AppConfig.VNP_URL;
+    public static final String VNP_RETURN_URL = AppConfig.VNP_RETURN_URL;
 
     private static final String PREF_NAME = "vnpay_config";
     private static final String KEY_TMN_CODE = "tmn_code";

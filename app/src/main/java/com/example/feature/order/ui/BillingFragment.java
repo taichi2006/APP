@@ -132,14 +132,16 @@ public class BillingFragment extends Fragment {
             if (selectedAddress != null && !phone.isEmpty()) selectedAddress.setPhoneNumb(phone);
             SoundHelper.playClickSound();
 
-            long orderId = 100000L + (long) (new java.util.Random().nextDouble() * 899999L);
+            long orderId = System.currentTimeMillis() % 1000L;
+            if (orderId <= 0) orderId = 1L;
+            long finalOrderId = orderId;
             if (binding.radioSandbox.isChecked()) {
-                VNPayWebViewDialog.show(requireContext(), orderId, getFinalTotalPrice(), new VNPayWebViewDialog.OnVNPayPaymentListener() {
-                    @Override public void onPaymentSuccess(String pm, String ps) { submitOrder(pm, ps, orderId); }
+                VNPayWebViewDialog.show(requireContext(), finalOrderId, getFinalTotalPrice(), new VNPayWebViewDialog.OnVNPayPaymentListener() {
+                    @Override public void onPaymentSuccess(String pm, String ps) { submitOrder(pm, ps, finalOrderId); }
                     @Override public void onPaymentFailed(String c) { Toast.makeText(requireContext(), "Thanh toán chưa hoàn tất. Bạn có thể chọn COD.", Toast.LENGTH_SHORT).show(); }
                 });
             } else {
-                PaymentConfirmDialog.show(requireContext(), getFinalTotalPrice(), selectedAddress, (pm, ps) -> submitOrder(pm, ps, orderId));
+                PaymentConfirmDialog.show(requireContext(), getFinalTotalPrice(), selectedAddress, (pm, ps) -> submitOrder(pm, ps, finalOrderId));
             }
         });
     }
@@ -285,10 +287,10 @@ public class BillingFragment extends Fragment {
                 binding.buttonPlaceOrder.revertAnimation();
                 SoundHelper.playSuccessSound();
                 Order placed = res.getData();
-                String orderId = (placed != null) ? String.valueOf(placed.getOrderId()) : String.valueOf(System.currentTimeMillis() % 100000);
+                String orderCode = (placed != null) ? placed.getOrderCode() : "ORD001";
                 Context ctx = getContext();
-                if (ctx != null) AppNotificationHelper.showOrderNotification(ctx, orderId, PriceCalculator.formatPriceVnd(getFinalTotalPrice()), "Đơn hàng đã được xác nhận");
-                showSuccessDialog(orderId);
+                if (ctx != null) AppNotificationHelper.showOrderNotification(ctx, orderCode, PriceCalculator.formatPriceVnd(getFinalTotalPrice()), "Đơn hàng đã được xác nhận");
+                showSuccessDialog(orderCode);
             } else if (res instanceof Resource.Error) {
                 binding.buttonPlaceOrder.revertAnimation();
                 Toast.makeText(requireContext(), res.getMessage(), Toast.LENGTH_SHORT).show();

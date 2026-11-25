@@ -8,12 +8,19 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def envFile = rootProject.file(".env")
+def envProps = new Properties()
+if (envFile.exists()) {
+    envFile.withReader('UTF-8') { reader ->
+        envProps.load(reader)
+    }
+}
+
 android {
     namespace 'com.example.aroom'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.google.ar.sceneform.samples.gltf"
         applicationId "com.example.aroom"
         minSdk 24
         targetSdk 33
@@ -21,6 +28,16 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "FIREBASE_PROJECT_ID", "\"${envProps.getProperty('FIREBASE_PROJECT_ID', 'ar-room-92861')}\""
+        buildConfigField "String", "FIREBASE_DB_URL", "\"${envProps.getProperty('FIREBASE_DB_URL', 'https://ar-room-92861.firebaseio.com')}\""
+        buildConfigField "String", "FIREBASE_STORAGE_BUCKET", "\"${envProps.getProperty('FIREBASE_STORAGE_BUCKET', 'ar-room-92861.firebasestorage.app')}\""
+        buildConfigField "String", "FIREBASE_API_KEY", "\"${envProps.getProperty('FIREBASE_API_KEY', 'AIzaSyDzMOEkhTZ3BGbJ8ROWzWmxsrzoCVT33j4')}\""
+        buildConfigField "String", "SANDBOX_TOKEN", "\"${envProps.getProperty('SANDBOX_TOKEN', 'sandbox_aroom_live_sec_982341')}\""
+        buildConfigField "String", "VNP_TMN_CODE", "\"${envProps.getProperty('VNP_TMN_CODE', 'YB3TI7G3')}\""
+        buildConfigField "String", "VNP_HASH_SECRET", "\"${envProps.getProperty('VNP_HASH_SECRET', 'TCJWCJVZLOQWTHSTCQNPSXWWFOLYSASF')}\""
+        buildConfigField "String", "VNP_URL", "\"${envProps.getProperty('VNP_URL', 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html')}\""
+        buildConfigField "String", "VNP_RETURN_URL", "\"${envProps.getProperty('VNP_RETURN_URL', 'https://sandbox.vnpayment.vn/merchantv2/')}\""
     }
 
 

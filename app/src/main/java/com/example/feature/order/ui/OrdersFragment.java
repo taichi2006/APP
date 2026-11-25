@@ -107,10 +107,16 @@ public class OrdersFragment extends Fragment {
 
     private void showReviewDialog(Order order) {
         if (order == null) return;
+        if (order.isReviewed()) {
+            Toast.makeText(requireContext(), "Bạn đã đánh giá đơn hàng này rồi!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         AddReviewDialog.show(requireContext(), order, (rating, comment) -> {
             viewModel.submitOrderReview(order, rating, comment, (success, message) -> {
                 if (success) {
-                    Toast.makeText(requireContext(), "Cảm ơn bạn đã gửi đánh giá cho đơn hàng #" + order.getOrderId(), Toast.LENGTH_SHORT).show();
+                    order.setReviewed(true);
+                    orderAdapter.notifyDataSetChanged();
+                    Toast.makeText(requireContext(), "Cảm ơn bạn đã gửi đánh giá cho đơn hàng #" + order.getOrderCode(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), message != null ? message : "Gửi đánh giá thất bại", Toast.LENGTH_SHORT).show();
                 }
@@ -120,7 +126,7 @@ public class OrdersFragment extends Fragment {
 
     private void showCancelDialog(Order order) {
         new MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Hủy đơn hàng #" + order.getOrderId())
+                .setTitle("Hủy đơn hàng #" + order.getOrderCode())
                 .setMessage("Bạn có chắc chắn muốn hủy đơn hàng này không?")
                 .setPositiveButton("Hủy đơn", (dialog, which) -> {
                     viewModel.cancelOrder(order.getOrderId(), (success, message) -> {

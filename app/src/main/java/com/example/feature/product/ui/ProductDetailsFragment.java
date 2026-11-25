@@ -25,7 +25,6 @@ import com.example.model.CartProduct;
 import com.example.model.Product;
 import com.example.model.Review;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -194,33 +193,37 @@ public class ProductDetailsFragment extends Fragment {
                 Toast.makeText(requireContext(), resource.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        viewModel.getReviewsLiveData().observe(getViewLifecycleOwner(), resource -> {
+            if (resource instanceof Resource.Success) {
+                List<Review> reviews = resource.getData();
+                if (reviews != null && !reviews.isEmpty()) {
+                    float sum = 0f;
+                    for (Review r : reviews) sum += r.getRating();
+                    float avg = sum / reviews.size();
+                    binding.tvAvgRatingScore.setText(String.format(Locale.US, "%.1f", avg));
+                    binding.ratingBarSummary.setRating(avg);
+                    binding.tvReviewsCountBadge.setText(reviews.size() + " nhận xét");
+                    reviewAdapter.differ.submitList(reviews);
+                    binding.rvReviews.setVisibility(View.VISIBLE);
+                    binding.tvEmptyReviews.setVisibility(View.GONE);
+                } else {
+                    binding.rvReviews.setVisibility(View.GONE);
+                    binding.tvEmptyReviews.setVisibility(View.VISIBLE);
+                }
+            } else if (resource instanceof Resource.Error) {
+                binding.rvReviews.setVisibility(View.GONE);
+                binding.tvEmptyReviews.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void setupReviews(Product product) {
         binding.rvReviews.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvReviews.setAdapter(reviewAdapter);
-
-        FirebaseFirestore.getInstance().collection("reviews")
-                .whereEqualTo("productId", product.getId())
-                .get()
-                .addOnSuccessListener(snapshot -> {
-                    List<Review> reviews = snapshot.toObjects(Review.class);
-                    if (!reviews.isEmpty()) {
-                        float sum = 0f;
-                        for (Review r : reviews) sum += r.getRating();
-                        float avg = sum / reviews.size();
-                        binding.tvAvgRatingScore.setText(String.format(Locale.US, "%.1f", avg));
-                        binding.ratingBarSummary.setRating(avg);
-                        binding.tvReviewsCountBadge.setText(reviews.size() + " nhận xét");
-                        reviewAdapter.differ.submitList(reviews);
-                        binding.rvReviews.setVisibility(View.VISIBLE);
-                        binding.tvEmptyReviews.setVisibility(View.GONE);
-                    } else {
-                        binding.rvReviews.setVisibility(View.GONE);
-                        binding.tvEmptyReviews.setVisibility(View.VISIBLE);
-                    }
-                })
-                .addOnFailureListener(e -> binding.tvEmptyReviews.setVisibility(View.VISIBLE));
+        if (product != null && product.getId() != null) {
+            viewModel.loadReviews(product.getId());
+        }
     }
 
     private void bindMaterialSpecifications(Product product) {

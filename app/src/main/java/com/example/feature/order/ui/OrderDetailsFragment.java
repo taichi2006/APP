@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.aroom.R;
 import com.example.aroom.databinding.FragmentOrderDetailBinding;
 import com.example.core.util.PriceCalculator;
+import com.example.core.util.Resource;
 import com.example.core.util.SoundHelper;
 import com.example.core.util.UiUtil;
 import com.example.feature.order.viewmodel.OrdersViewModel;
@@ -74,9 +75,9 @@ public class OrderDetailsFragment extends Fragment {
         binding.rvProducts.setAdapter(orderDetailsAdapter);
         if (order == null) return;
 
-        binding.tvOrderId.setText("Order #" + order.getOrderId());
-        binding.tvInvoiceOrderId.setText("#" + order.getOrderId());
-        binding.tvTrackingCode.setText("ARVN" + order.getOrderId());
+        binding.tvOrderId.setText("Order #" + order.getOrderCode());
+        binding.tvInvoiceOrderId.setText("#" + order.getOrderCode());
+        binding.tvTrackingCode.setText("ARVN" + order.getOrderCode());
         binding.tvInvoiceDate.setText(order.getDate() != null ? order.getDate() : "Không xác định");
         binding.tvInvoicePaymentMethod.setText(order.getPaymentMethod() != null ? order.getPaymentMethod() : "COD");
         binding.tvInvoicePaymentStatus.setText(order.getPaymentStatus() != null ? order.getPaymentStatus() : "Chờ xử lý");
@@ -101,7 +102,7 @@ public class OrderDetailsFragment extends Fragment {
         binding.btnCopyOrderId.setOnClickListener(v -> {
             if (order == null) return;
             ClipboardManager cb = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            if (cb != null) cb.setPrimaryClip(ClipData.newPlainText("Order ID", "#" + order.getOrderId()));
+            if (cb != null) cb.setPrimaryClip(ClipData.newPlainText("Order ID", "#" + order.getOrderCode()));
             Toast.makeText(requireContext(), "Đã sao chép mã đơn hàng", Toast.LENGTH_SHORT).show();
         });
 
@@ -117,7 +118,7 @@ public class OrderDetailsFragment extends Fragment {
         binding.btnCancelOrder.setOnClickListener(v -> {
             if (order == null) return;
             new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Hủy đơn hàng #" + order.getOrderId())
+                    .setTitle("Hủy đơn hàng #" + order.getOrderCode())
                     .setMessage("Bạn có chắc chắn muốn hủy đơn hàng này không?")
                     .setPositiveButton("Hủy đơn", (dialog, which) -> {
                         ordersViewModel.cancelOrder(order.getOrderId(), (success, msg) -> {
@@ -140,12 +141,16 @@ public class OrderDetailsFragment extends Fragment {
 
     private void showReviewDialog() {
         if (order == null) return;
+        if (order.isReviewed()) {
+            Toast.makeText(requireContext(), "Bạn đã đánh giá đơn hàng này rồi!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         AddReviewDialog.show(requireContext(), order, (rating, comment) -> {
             ordersViewModel.submitOrderReview(order, rating, comment, (success, message) -> {
                 if (success) {
                     order.setReviewed(true);
                     bindStatus();
-                    Toast.makeText(requireContext(), "Cảm ơn bạn đã gửi đánh giá cho đơn hàng #" + order.getOrderId(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Cảm ơn bạn đã gửi đánh giá cho đơn hàng #" + order.getOrderCode(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), message != null ? message : "Gửi đánh giá thất bại", Toast.LENGTH_SHORT).show();
                 }
@@ -153,7 +158,19 @@ public class OrderDetailsFragment extends Fragment {
         });
     }
 
-    private void observeState() {}
+    private void observeState() {
+        ordersViewModel.getOrdersLiveData().observe(getViewLifecycleOwner(), resource -> {
+            if (resource instanceof Resource.Success && resource.getData() != null && order != null) {
+                for (Order o : resource.getData()) {
+                    if (o.getOrderId() == order.getOrderId()) {
+                        this.order = o;
+                        bindStatus();
+                        break;
+                    }
+                }
+            }
+        });
+    }
 
     private void bindStatus() {
         if (order == null) return;
@@ -199,9 +216,11 @@ public class OrderDetailsFragment extends Fragment {
         if (isReceived) {
             if (order.isReviewed()) {
                 binding.btnRateOrder.setText("Đã đánh giá");
+                binding.btnRateOrder.setEnabled(false);
                 binding.btnRateOrder.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#64748B")));
             } else {
                 binding.btnRateOrder.setText("Đánh giá");
+                binding.btnRateOrder.setEnabled(true);
                 binding.btnRateOrder.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#B88A44")));
             }
         }

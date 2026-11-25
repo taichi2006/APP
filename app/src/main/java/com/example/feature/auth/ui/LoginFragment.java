@@ -84,7 +84,6 @@ public class LoginFragment extends Fragment {
     }
 
     private void setupListeners() {
-        binding.tvForgotPasswordLogin.setOnClickListener(v -> ResetPasswordDialog.show(this, email -> viewModel.resetPassword(email)));
         binding.tvDontHaveAccount.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_registerFragment));
 
         binding.btnLoginLogin.setOnClickListener(v -> {
@@ -102,7 +101,6 @@ public class LoginFragment extends Fragment {
                 googleSignInClient.signOut().addOnCompleteListener(task -> googleSignInLauncher.launch(googleSignInClient.getSignInIntent()));
             }
         });
-        binding.facebookLogin.setOnClickListener(v -> Toast.makeText(requireContext(), "Vui lòng sử dụng Google hoặc Email!", Toast.LENGTH_SHORT).show());
     }
 
     private void observeState() {

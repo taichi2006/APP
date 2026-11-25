@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Order implements Parcelable {
+    private String orderCode; // Mã định dạng ORD001, ORD002...
     private String orderStatus;
     private float totalPrice;
     private List<CartProduct> products;
@@ -23,12 +24,14 @@ public class Order implements Parcelable {
     private boolean reviewed;
 
     public Order() {
+        this.orderCode = "";
         this.orderStatus = "";
         this.totalPrice = 0f;
         this.products = new ArrayList<>();
         this.address = new Address();
         this.date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
-        this.orderId = 100000L + (long) (new Random().nextDouble() * 899999L);
+        this.orderId = 1L;
+        this.orderCode = formatOrderCode(this.orderId);
         this.paymentMethod = "COD";
         this.paymentStatus = "Chờ xử lý";
         this.note = "";
@@ -58,12 +61,18 @@ public class Order implements Parcelable {
         this.address = address != null ? address : new Address();
         this.date = date != null ? date : new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
         this.orderId = orderId;
+        this.orderCode = formatOrderCode(orderId);
         this.paymentMethod = paymentMethod != null ? paymentMethod : "COD";
         this.paymentStatus = paymentStatus != null ? paymentStatus : "Chờ xử lý";
         this.note = "";
     }
 
+    public static String formatOrderCode(long id) {
+        return String.format(Locale.US, "ORD%03d", id);
+    }
+
     protected Order(Parcel in) {
+        orderCode = in.readString();
         orderStatus = in.readString();
         totalPrice = in.readFloat();
         products = in.createTypedArrayList(CartProduct.CREATOR);
@@ -87,6 +96,7 @@ public class Order implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(getOrderCode());
         dest.writeString(orderStatus);
         dest.writeFloat(totalPrice);
         dest.writeTypedList(products);
@@ -99,6 +109,11 @@ public class Order implements Parcelable {
         dest.writeByte((byte) (reviewed ? 1 : 0));
     }
 
+    public String getOrderCode() {
+        if (orderCode != null && !orderCode.isEmpty()) return orderCode;
+        return formatOrderCode(orderId);
+    }
+    public void setOrderCode(String orderCode) { this.orderCode = orderCode; }
     public String getOrderStatus() { return orderStatus; }
     public void setOrderStatus(String orderStatus) { this.orderStatus = orderStatus; }
     public float getTotalPrice() { return totalPrice; }
@@ -110,7 +125,10 @@ public class Order implements Parcelable {
     public String getDate() { return date; }
     public void setDate(String date) { this.date = date; }
     public long getOrderId() { return orderId; }
-    public void setOrderId(long orderId) { this.orderId = orderId; }
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+        this.orderCode = formatOrderCode(orderId);
+    }
     public String getPaymentMethod() { return paymentMethod; }
     public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
     public String getPaymentStatus() { return paymentStatus; }

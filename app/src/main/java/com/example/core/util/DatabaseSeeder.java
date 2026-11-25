@@ -55,16 +55,19 @@ public class DatabaseSeeder {
 
         // 3. Seed Sample Orders, Order Details, Payments
         List<Order> orders = DatabaseSampleData.getSampleOrders();
+        int dtlIdx = 1;
         for (Order order : orders) {
-            String oIdStr = String.valueOf(order.getOrderId());
+            String oIdStr = order.getOrderCode();
             batch.set(firestore.collection("orders").document(oIdStr), order);
 
             if (order.getProducts() != null) {
                 for (CartProduct cp : order.getProducts()) {
                     if (cp != null && cp.getProduct() != null) {
-                        String detailId = oIdStr + "_" + cp.getProduct().getId();
+                        String detailId = String.format(java.util.Locale.US, "DTL%03d", dtlIdx++);
                         DocumentReference detailRef = firestore.collection("order_details").document(detailId);
                         Map<String, Object> detailData = new HashMap<>();
+                        detailData.put("detailId", detailId);
+                        detailData.put("orderCode", order.getOrderCode());
                         detailData.put("orderId", order.getOrderId());
                         detailData.put("productId", cp.getProduct().getId());
                         detailData.put("productName", cp.getProduct().getName());
@@ -72,7 +75,7 @@ public class DatabaseSeeder {
                         detailData.put("quantity", cp.getQuantity());
                         detailData.put("selectedColor", cp.getSelectedColor());
                         detailData.put("selectedSize", cp.getSelectedSize());
-                        detailData.put("userId", "USR_DEMO");
+                        detailData.put("userId", "USR001");
                         detailData.put("date", order.getDate());
                         batch.set(detailRef, detailData);
                     }
