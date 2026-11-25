@@ -93,4 +93,23 @@ public class OrdersViewModel extends ViewModel {
             }
         });
     }
+
+    public interface SubmitReviewCallback {
+        void onResult(boolean success, String message);
+    }
+
+    public void submitOrderReview(Order order, float rating, String comment, SubmitReviewCallback callback) {
+        orderRepository.submitOrderReview(order, rating, comment, new OrderRepository.Callback<Void>() {
+            @Override
+            public void onSuccess(Void result) {
+                getAllOrders();
+                if (callback != null) callback.onResult(true, null);
+            }
+
+            @Override
+            public void onError(String message) {
+                if (callback != null) callback.onResult(false, message);
+            }
+        });
+    }
 }

@@ -4,6 +4,7 @@ import com.example.model.Address;
 import com.example.model.CartProduct;
 import com.example.model.Order;
 import com.example.model.Payment;
+import com.example.model.Review;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -288,6 +289,51 @@ public class OrderRepository {
                 })
                 .addOnFailureListener(e -> {
                     if (callback != null) callback.onError(e.getMessage());
+                });
+    }
+
+    public void submitOrderReview(Order order, float rating, String comment, Callback<Void> callback) {
+        String uid = auth.getUid();
+        if (uid == null) {
+            if (callback != null) callback.onError("Vui lòng đăng nhập để gửi đánh giá");
+            return;
+        }
+        if (order == null) {
+            if (callback != null) callback.onError("Đơn hàng không hợp lệ");
+            return;
+        }
+
+        String orderIdStr = String.valueOf(order.getOrderId());
+        String userName = (order.getAddress() != null && order.getAddress().getFullName() != null && !order.getAddress().getFullName().isEmpty())
+                ? order.getAddress().getFullName()
+                : (auth.getCurrentUser() != null && auth.getCurrentUser().getDisplayName() != null ? auth.getCurrentUser().getDisplayName() : "Khách hàng");
+        String userEmail = auth.getCurrentUser() != null && auth.getCurrentUser().getEmail() != null ? auth.getCurrentUser().getEmail() : "";
+        String date = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
+
+        WriteBatch batch = firestore.batch();
+        if (order.getProducts() != null && !order.getProducts().isEmpty()) {
+            for (CartProduct cp : order.getProducts()) {
+                if (cp != null && cp.getProduct() != null && cp.getProduct().getId() != null) {
+                    String pid = cp.getProduct().getId();
+                    String reviewId = "rev_" + orderIdStr + "_" + pid;
+                    Review r = new Review(reviewId, pid, orderIdStr, userName, userEmail, rating, comment, date);
+                    batch.set(firestore.collection("reviews").document(reviewId), r);
+                }
+            }
+        }
+
+        DocumentReference userOrderRef = firestore.collection("user").document(uid).collection("orders").document(orderIdStr);
+        batch.update(userOrderRef, "reviewed", true);
+        DocumentReference globalOrderRef = firestore.collection("orders").document(orderIdStr);
+        batch.update(globalOrderRef, "reviewed", true);
+
+        batch.commit()
+                .addOnSuccessListener(aVoid -> {
+                    order.setReviewed(true);
+                    if (callback != null) callback.onSuccess(null);
+                })
+                .addOnFailureListener(e -> {
+                    if (callback != null) callback.onError(e.getMessage() != null ? e.getMessage() : "Lỗi lưu đánh giá");
                 });
     }
 }

@@ -20,6 +20,7 @@ public class Order implements Parcelable {
     private String paymentMethod;
     private String paymentStatus;
     private String note;
+    private boolean reviewed;
 
     public Order() {
         this.orderStatus = "";
@@ -31,6 +32,7 @@ public class Order implements Parcelable {
         this.paymentMethod = "COD";
         this.paymentStatus = "Chờ xử lý";
         this.note = "";
+        this.reviewed = false;
     }
 
     public Order(String orderStatus, float totalPrice, List<CartProduct> products, Address address, String paymentMethod, String paymentStatus) {
@@ -73,6 +75,7 @@ public class Order implements Parcelable {
         paymentMethod = in.readString();
         paymentStatus = in.readString();
         note = in.readString();
+        reviewed = in.readByte() != 0;
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
@@ -93,6 +96,7 @@ public class Order implements Parcelable {
         dest.writeString(paymentMethod);
         dest.writeString(paymentStatus);
         dest.writeString(note);
+        dest.writeByte((byte) (reviewed ? 1 : 0));
     }
 
     public String getOrderStatus() { return orderStatus; }
@@ -113,6 +117,8 @@ public class Order implements Parcelable {
     public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }
     public String getNote() { return note; }
     public void setNote(String note) { this.note = note; }
+    public boolean isReviewed() { return reviewed; }
+    public void setReviewed(boolean reviewed) { this.reviewed = reviewed; }
 
     @Override
     public boolean equals(Object o) {

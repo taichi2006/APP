@@ -135,8 +135,21 @@ public class OrderDetailsFragment extends Fragment {
                     .show();
         });
 
-        binding.btnRateOrder.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "Cảm ơn bạn đã đánh giá đơn hàng!", Toast.LENGTH_SHORT).show();
+        binding.btnRateOrder.setOnClickListener(v -> showReviewDialog());
+    }
+
+    private void showReviewDialog() {
+        if (order == null) return;
+        AddReviewDialog.show(requireContext(), order, (rating, comment) -> {
+            ordersViewModel.submitOrderReview(order, rating, comment, (success, message) -> {
+                if (success) {
+                    order.setReviewed(true);
+                    bindStatus();
+                    Toast.makeText(requireContext(), "Cảm ơn bạn đã gửi đánh giá cho đơn hàng #" + order.getOrderId(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), message != null ? message : "Gửi đánh giá thất bại", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 
@@ -183,6 +196,15 @@ public class OrderDetailsFragment extends Fragment {
 
         binding.btnCancelOrder.setVisibility(isCancelable ? View.VISIBLE : View.GONE);
         binding.btnRateOrder.setVisibility(isReceived ? View.VISIBLE : View.GONE);
+        if (isReceived) {
+            if (order.isReviewed()) {
+                binding.btnRateOrder.setText("Đã đánh giá");
+                binding.btnRateOrder.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#64748B")));
+            } else {
+                binding.btnRateOrder.setText("Đánh giá");
+                binding.btnRateOrder.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#B88A44")));
+            }
+        }
     }
 
     @Override

@@ -102,7 +102,20 @@ public class OrdersFragment extends Fragment {
         });
 
         orderAdapter.setOnCancelClick(this::showCancelDialog);
-        orderAdapter.setOnRateClick(order -> Toast.makeText(requireContext(), "Cảm ơn bạn đã đánh giá đơn hàng #" + order.getOrderId(), Toast.LENGTH_SHORT).show());
+        orderAdapter.setOnRateClick(this::showReviewDialog);
+    }
+
+    private void showReviewDialog(Order order) {
+        if (order == null) return;
+        AddReviewDialog.show(requireContext(), order, (rating, comment) -> {
+            viewModel.submitOrderReview(order, rating, comment, (success, message) -> {
+                if (success) {
+                    Toast.makeText(requireContext(), "Cảm ơn bạn đã gửi đánh giá cho đơn hàng #" + order.getOrderId(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), message != null ? message : "Gửi đánh giá thất bại", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
     }
 
     private void showCancelDialog(Order order) {

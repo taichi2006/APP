@@ -95,6 +95,15 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.Orde
             binding.btnCancelOrderItem.setOnClickListener(v -> { if (onCancelClick != null) onCancelClick.onOrderClick(order); });
 
             binding.btnRateOrderItem.setVisibility(isReceived ? View.VISIBLE : View.GONE);
+            if (isReceived) {
+                if (order.isReviewed()) {
+                    binding.btnRateOrderItem.setText("Đã đánh giá");
+                    binding.btnRateOrderItem.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#64748B")));
+                } else {
+                    binding.btnRateOrderItem.setText("Đánh giá");
+                    binding.btnRateOrderItem.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#B88A44")));
+                }
+            }
             binding.btnRateOrderItem.setOnClickListener(v -> { if (onRateClick != null) onRateClick.onOrderClick(order); });
 
             binding.cardOrder.setOnClickListener(v -> { if (onClick != null) onClick.onOrderClick(order); });
@@ -112,6 +121,7 @@ public class AllOrdersAdapter extends RecyclerView.Adapter<AllOrdersAdapter.Orde
         public boolean areContentsTheSame(@NonNull Order oldItem, @NonNull Order newItem) {
             return oldItem.getOrderId() == newItem.getOrderId()
                     && Objects.equals(oldItem.getOrderStatus(), newItem.getOrderStatus())
+                    && oldItem.isReviewed() == newItem.isReviewed()
                     && oldItem.getTotalPrice() == newItem.getTotalPrice();
         }
     };
